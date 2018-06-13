@@ -13,14 +13,14 @@ if ( ! class_exists( 'GAINWP_Frontend_Ajax' ) ) {
 
 	final class GAINWP_Frontend_Ajax {
 
-		private $gacwp;
+		private $gainwp;
 
 		public function __construct() {
-			$this->gacwp = GAINWP();
+			$this->gainwp = GAINWP();
 
-			if ( GAINWP_Tools::check_roles( $this->gacwp->config->options['access_front'] ) && $this->gacwp->config->options['frontend_item_reports'] ) {
+			if ( GAINWP_Tools::check_roles( $this->gainwp->config->options['access_front'] ) && $this->gainwp->config->options['frontend_item_reports'] ) {
 				// Item Reports action
-				add_action( 'wp_ajax_gacwp_frontend_item_reports', array( $this, 'ajax_item_reports' ) );
+				add_action( 'wp_ajax_gainwp_frontend_item_reports', array( $this, 'ajax_item_reports' ) );
 			}
 
 			// Frontend Widget actions
@@ -34,7 +34,7 @@ if ( ! class_exists( 'GAINWP_Frontend_Ajax' ) ) {
 		 * @return string|int
 		 */
 		public function ajax_item_reports() {
-			if ( ! isset( $_POST['gacwp_security_frontend_item_reports'] ) || ! wp_verify_nonce( $_POST['gacwp_security_frontend_item_reports'], 'gacwp_frontend_item_reports' ) ) {
+			if ( ! isset( $_POST['gainwp_security_frontend_item_reports'] ) || ! wp_verify_nonce( $_POST['gainwp_security_frontend_item_reports'], 'gainwp_frontend_item_reports' ) ) {
 				wp_die( - 30 );
 			}
 
@@ -53,36 +53,36 @@ if ( ! class_exists( 'GAINWP_Frontend_Ajax' ) ) {
 				ob_clean();
 			}
 
-			if ( ! GAINWP_Tools::check_roles( $this->gacwp->config->options['access_front'] ) || 0 == $this->gacwp->config->options['frontend_item_reports'] ) {
+			if ( ! GAINWP_Tools::check_roles( $this->gainwp->config->options['access_front'] ) || 0 == $this->gainwp->config->options['frontend_item_reports'] ) {
 				wp_die( - 31 );
 			}
 
-			if ( $this->gacwp->config->options['token'] && $this->gacwp->config->options['tableid_jail'] ) {
-				if ( null === $this->gacwp->gapi_controller ) {
-					$this->gacwp->gapi_controller = new GAINWP_GAPI_Controller();
+			if ( $this->gainwp->config->options['token'] && $this->gainwp->config->options['tableid_jail'] ) {
+				if ( null === $this->gainwp->gapi_controller ) {
+					$this->gainwp->gapi_controller = new GAINWP_GAPI_Controller();
 				}
 			} else {
 				wp_die( - 24 );
 			}
 
-			if ( $this->gacwp->config->options['tableid_jail'] ) {
-				$projectId = $this->gacwp->config->options['tableid_jail'];
+			if ( $this->gainwp->config->options['tableid_jail'] ) {
+				$projectId = $this->gainwp->config->options['tableid_jail'];
 			} else {
 				wp_die( - 26 );
 			}
 
-			$profile_info = GAINWP_Tools::get_selected_profile( $this->gacwp->config->options['ga_profiles_list'], $projectId );
+			$profile_info = GAINWP_Tools::get_selected_profile( $this->gainwp->config->options['ga_profiles_list'], $projectId );
 
 			if ( isset( $profile_info[4] ) ) {
-				$this->gacwp->gapi_controller->timeshift = $profile_info[4];
+				$this->gainwp->gapi_controller->timeshift = $profile_info[4];
 			} else {
-				$this->gacwp->gapi_controller->timeshift = (int) current_time( 'timestamp' ) - time();
+				$this->gainwp->gapi_controller->timeshift = (int) current_time( 'timestamp' ) - time();
 			}
 
 			$uri = '/' . ltrim( $uri, '/' );
 
 			// allow URL correction before sending an API request
-			$filter = apply_filters( 'gacwp_frontenditem_uri', $uri );
+			$filter = apply_filters( 'gainwp_frontenditem_uri', $uri );
 
 			$lastchar = substr( $filter, - 1 );
 
@@ -98,7 +98,7 @@ if ( ! class_exists( 'GAINWP_Frontend_Ajax' ) ) {
 			$results = array();
 
 			foreach ( $queries as $value ) {
-				$results[] = $this->gacwp->gapi_controller->get( $projectId, $value, $from, $to, $filter, $metric );
+				$results[] = $this->gainwp->gapi_controller->get( $projectId, $value, $from, $to, $filter, $metric );
 			}
 
 			wp_send_json( $results );
@@ -110,11 +110,11 @@ if ( ! class_exists( 'GAINWP_Frontend_Ajax' ) ) {
 		 * @return string|int
 		 */
 		public function ajax_frontend_widget() {
-			if ( ! isset( $_POST['gacwp_number'] ) || ! isset( $_POST['gacwp_optionname'] ) || ! is_active_widget( false, false, 'gacwp-frontwidget-report' ) ) {
+			if ( ! isset( $_POST['gainwp_number'] ) || ! isset( $_POST['gainwp_optionname'] ) || ! is_active_widget( false, false, 'gainwp-frontwidget-report' ) ) {
 				wp_die( - 30 );
 			}
-			$widget_index = $_POST['gacwp_number'];
-			$option_name = $_POST['gacwp_optionname'];
+			$widget_index = $_POST['gainwp_number'];
+			$option_name = $_POST['gainwp_optionname'];
 			$options = get_option( $option_name );
 			if ( isset( $options[$widget_index] ) ) {
 				$instance = $options[$widget_index];
@@ -135,21 +135,21 @@ if ( ! class_exists( 'GAINWP_Frontend_Ajax' ) ) {
 			if ( ob_get_length() ) {
 				ob_clean();
 			}
-			if ( $this->gacwp->config->options['token'] && $this->gacwp->config->options['tableid_jail'] ) {
-				if ( null === $this->gacwp->gapi_controller ) {
-					$this->gacwp->gapi_controller = new GAINWP_GAPI_Controller();
+			if ( $this->gainwp->config->options['token'] && $this->gainwp->config->options['tableid_jail'] ) {
+				if ( null === $this->gainwp->gapi_controller ) {
+					$this->gainwp->gapi_controller = new GAINWP_GAPI_Controller();
 				}
 			} else {
 				wp_die( - 24 );
 			}
-			$projectId = $this->gacwp->config->options['tableid_jail'];
-			$profile_info = GAINWP_Tools::get_selected_profile( $this->gacwp->config->options['ga_profiles_list'], $projectId );
+			$projectId = $this->gainwp->config->options['tableid_jail'];
+			$profile_info = GAINWP_Tools::get_selected_profile( $this->gainwp->config->options['ga_profiles_list'], $projectId );
 			if ( isset( $profile_info[4] ) ) {
-				$this->gacwp->gapi_controller->timeshift = $profile_info[4];
+				$this->gainwp->gapi_controller->timeshift = $profile_info[4];
 			} else {
-				$this->gacwp->gapi_controller->timeshift = (int) current_time( 'timestamp' ) - time();
+				$this->gainwp->gapi_controller->timeshift = (int) current_time( 'timestamp' ) - time();
 			}
-			wp_send_json( $this->gacwp->gapi_controller->frontend_widget_stats( $projectId, $period, (int) $instance['anonim'] ) );
+			wp_send_json( $this->gainwp->gapi_controller->frontend_widget_stats( $projectId, $period, (int) $instance['anonim'] ) );
 		}
 	}
 }

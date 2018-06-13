@@ -13,10 +13,10 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 
 	final class GAINWP_Backend_Setup {
 
-		private $gacwp;
+		private $gainwp;
 
 		public function __construct() {
-			$this->gacwp = GAINWP();
+			$this->gainwp = GAINWP();
 
 			// Styles & Scripts
 			add_action( 'admin_enqueue_scripts', array( $this, 'load_styles_scripts' ) );
@@ -25,7 +25,7 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 			// Network Menu
 			add_action( 'network_admin_menu', array( $this, 'network_menu' ) );
 			// Settings link
-			add_filter( "plugin_action_links_" . plugin_basename( GAINWP_DIR . 'gacwp.php' ), array( $this, 'settings_link' ) );
+			add_filter( "plugin_action_links_" . plugin_basename( GAINWP_DIR . 'gainwp.php' ), array( $this, 'settings_link' ) );
 			// Updated admin notice
 			add_action( 'admin_notices', array( $this, 'admin_notice' ) );
 		}
@@ -37,17 +37,17 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 			global $wp_version;
 			if ( current_user_can( 'manage_options' ) ) {
 				include ( GAINWP_DIR . 'admin/settings.php' );
-				add_menu_page( __( "Google Analytics", 'google-analytics-in-wp' ), __( "Google Analytics", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_settings', array( 'GAINWP_Settings', 'general_settings' ), version_compare( $wp_version, '3.8.0', '>=' ) ? 'dashicons-chart-area' : GAINWP_URL . 'admin/images/gacwp-icon.png' );
-				add_submenu_page( 'gacwp_settings', __( "General Settings", 'google-analytics-in-wp' ), __( "General Settings", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_settings', array( 'GAINWP_Settings', 'general_settings' ) );
-				add_submenu_page( 'gacwp_settings', __( "Tracking Settings", 'google-analytics-in-wp' ), __( "Tracking Settings", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_tracking_settings', array( 'GAINWP_Settings', 'tracking_settings' ) );
-				add_submenu_page( 'gacwp_settings', __( "Reporting Settings", 'google-analytics-in-wp' ), __( "Reporting Settings", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_report_settings', array( 'GAINWP_Settings', 'reporting_settings' ) );
-				add_submenu_page( 'gacwp_settings', __( "Errors & Debug", 'google-analytics-in-wp' ), __( "Errors & Debug", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_errors_debugging', array( 'GAINWP_Settings', 'errors_debugging' ) );
+				add_menu_page( __( "Google Analytics", 'google-analytics-in-wp' ), __( "Google Analytics", 'google-analytics-in-wp' ), 'manage_options', 'gainwp_settings', array( 'GAINWP_Settings', 'general_settings' ), version_compare( $wp_version, '3.8.0', '>=' ) ? 'dashicons-chart-area' : GAINWP_URL . 'admin/images/gainwp-icon.png' );
+				add_submenu_page( 'gainwp_settings', __( "General Settings", 'google-analytics-in-wp' ), __( "General Settings", 'google-analytics-in-wp' ), 'manage_options', 'gainwp_settings', array( 'GAINWP_Settings', 'general_settings' ) );
+				add_submenu_page( 'gainwp_settings', __( "Tracking Settings", 'google-analytics-in-wp' ), __( "Tracking Settings", 'google-analytics-in-wp' ), 'manage_options', 'gainwp_tracking_settings', array( 'GAINWP_Settings', 'tracking_settings' ) );
+				add_submenu_page( 'gainwp_settings', __( "Reporting Settings", 'google-analytics-in-wp' ), __( "Reporting Settings", 'google-analytics-in-wp' ), 'manage_options', 'gainwp_report_settings', array( 'GAINWP_Settings', 'reporting_settings' ) );
+				add_submenu_page( 'gainwp_settings', __( "Errors & Debug", 'google-analytics-in-wp' ), __( "Errors & Debug", 'google-analytics-in-wp' ), 'manage_options', 'gainwp_errors_debugging', array( 'GAINWP_Settings', 'errors_debugging' ) );
 				/*
-				add_submenu_page( 'gacwp_settings', __( "General Settings", 'google-analytics-in-wp' ), __( "General Settings", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_settings', array( 'GAINWP_Settings', 'general_settings' ) );
-				add_submenu_page( 'gacwp_settings', __( "Backend Settings", 'google-analytics-in-wp' ), __( "Backend Settings", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_backend_settings', array( 'GAINWP_Settings', 'backend_settings' ) );
-				add_submenu_page( 'gacwp_settings', __( "Frontend Settings", 'google-analytics-in-wp' ), __( "Frontend Settings", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_frontend_settings', array( 'GAINWP_Settings', 'frontend_settings' ) );
-				add_submenu_page( 'gacwp_settings', __( "Tracking Settings", 'google-analytics-in-wp' ), __( "Tracking Code", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_tracking_settings', array( 'GAINWP_Settings', 'tracking_settings' ) );
-				add_submenu_page( 'gacwp_settings', __( "Errors & Debug", 'google-analytics-in-wp' ), __( "Errors & Debug", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_errors_debugging', array( 'GAINWP_Settings', 'errors_debugging' ) );
+				add_submenu_page( 'gainwp_settings', __( "General Settings", 'google-analytics-in-wp' ), __( "General Settings", 'google-analytics-in-wp' ), 'manage_options', 'gainwp_settings', array( 'GAINWP_Settings', 'general_settings' ) );
+				add_submenu_page( 'gainwp_settings', __( "Backend Settings", 'google-analytics-in-wp' ), __( "Backend Settings", 'google-analytics-in-wp' ), 'manage_options', 'gainwp_backend_settings', array( 'GAINWP_Settings', 'backend_settings' ) );
+				add_submenu_page( 'gainwp_settings', __( "Frontend Settings", 'google-analytics-in-wp' ), __( "Frontend Settings", 'google-analytics-in-wp' ), 'manage_options', 'gainwp_frontend_settings', array( 'GAINWP_Settings', 'frontend_settings' ) );
+				add_submenu_page( 'gainwp_settings', __( "Tracking Settings", 'google-analytics-in-wp' ), __( "Tracking Code", 'google-analytics-in-wp' ), 'manage_options', 'gainwp_tracking_settings', array( 'GAINWP_Settings', 'tracking_settings' ) );
+				add_submenu_page( 'gainwp_settings', __( "Errors & Debug", 'google-analytics-in-wp' ), __( "Errors & Debug", 'google-analytics-in-wp' ), 'manage_options', 'gainwp_errors_debugging', array( 'GAINWP_Settings', 'errors_debugging' ) );
 				*/
 			}
 		}
@@ -59,9 +59,9 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 			global $wp_version;
 			if ( current_user_can( 'manage_network' ) ) {
 				include ( GAINWP_DIR . 'admin/settings.php' );
-				add_menu_page( __( "Google Analytics", 'google-analytics-in-wp' ), "Google Analytics", 'manage_network', 'gacwp_settings', array( 'GAINWP_Settings', 'general_settings_network' ), version_compare( $wp_version, '3.8.0', '>=' ) ? 'dashicons-chart-area' : GAINWP_URL . 'admin/images/gacwp-icon.png' );
-				add_submenu_page( 'gacwp_settings', __( "General Settings", 'google-analytics-in-wp' ), __( "General Settings", 'google-analytics-in-wp' ), 'manage_network', 'gacwp_settings', array( 'GAINWP_Settings', 'general_settings_network' ) );
-				add_submenu_page( 'gacwp_settings', __( "Errors & Debug", 'google-analytics-in-wp' ), __( "Errors & Debug", 'google-analytics-in-wp' ), 'manage_network', 'gacwp_errors_debugging', array( 'GAINWP_Settings', 'errors_debugging' ) );
+				add_menu_page( __( "Google Analytics", 'google-analytics-in-wp' ), "Google Analytics", 'manage_network', 'gainwp_settings', array( 'GAINWP_Settings', 'general_settings_network' ), version_compare( $wp_version, '3.8.0', '>=' ) ? 'dashicons-chart-area' : GAINWP_URL . 'admin/images/gainwp-icon.png' );
+				add_submenu_page( 'gainwp_settings', __( "General Settings", 'google-analytics-in-wp' ), __( "General Settings", 'google-analytics-in-wp' ), 'manage_network', 'gainwp_settings', array( 'GAINWP_Settings', 'general_settings_network' ) );
+				add_submenu_page( 'gainwp_settings', __( "Errors & Debug", 'google-analytics-in-wp' ), __( "Errors & Debug", 'google-analytics-in-wp' ), 'manage_network', 'gainwp_errors_debugging', array( 'GAINWP_Settings', 'errors_debugging' ) );
 			}
 		}
 
@@ -83,7 +83,7 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 			/*
 			 * GAINWP main stylesheet
 			 */
-			wp_enqueue_style( 'gacwp', GAINWP_URL . 'admin/css/gacwp.css', null, GAINWP_CURRENT_VERSION );
+			wp_enqueue_style( 'gainwp', GAINWP_URL . 'admin/css/gainwp.css', null, GAINWP_CURRENT_VERSION );
 
 			/*
 			 * GAINWP UI
@@ -95,20 +95,20 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 				$ed_bubble = '';
 			}
 
-			wp_enqueue_script( 'gacwp-backend-ui', plugins_url( 'js/ui.js', __FILE__ ), array( 'jquery' ), GAINWP_CURRENT_VERSION, true );
+			wp_enqueue_script( 'gainwp-backend-ui', plugins_url( 'js/ui.js', __FILE__ ), array( 'jquery' ), GAINWP_CURRENT_VERSION, true );
 
 			/* @formatter:off */
-			wp_localize_script( 'gacwp-backend-ui', 'gacwp_ui_data', array(
+			wp_localize_script( 'gainwp-backend-ui', 'gainwp_ui_data', array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'security' => wp_create_nonce( 'gacwp_dismiss_notices' ),
+				'security' => wp_create_nonce( 'gainwp_dismiss_notices' ),
 				'ed_bubble' => $ed_bubble,
 			)
 			);
 			/* @formatter:on */
 
-			if ( $this->gacwp->config->options['switch_profile'] && count( $this->gacwp->config->options['ga_profiles_list'] ) > 1 ) {
+			if ( $this->gainwp->config->options['switch_profile'] && count( $this->gainwp->config->options['ga_profiles_list'] ) > 1 ) {
 				$views = array();
-				foreach ( $this->gacwp->config->options['ga_profiles_list'] as $items ) {
+				foreach ( $this->gainwp->config->options['ga_profiles_list'] as $items ) {
 					if ( $items[3] ) {
 						$views[$items[1]] = esc_js( GAINWP_Tools::strip_protocol( $items[3] ) ); // . ' &#8658; ' . $items[0] );
 					}
@@ -123,12 +123,12 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 			$widgets_hooks = array( 'index.php' );
 
 			if ( in_array( $new_hook, $widgets_hooks ) ) {
-				if ( GAINWP_Tools::check_roles( $this->gacwp->config->options['access_back'] ) && $this->gacwp->config->options['dashboard_widget'] ) {
+				if ( GAINWP_Tools::check_roles( $this->gainwp->config->options['access_back'] ) && $this->gainwp->config->options['dashboard_widget'] ) {
 
-					if ( $this->gacwp->config->options['ga_target_geomap'] ) {
+					if ( $this->gainwp->config->options['ga_target_geomap'] ) {
 						$country_codes = GAINWP_Tools::get_countrycodes();
-						if ( isset( $country_codes[$this->gacwp->config->options['ga_target_geomap']] ) ) {
-							$region = $this->gacwp->config->options['ga_target_geomap'];
+						if ( isset( $country_codes[$this->gainwp->config->options['ga_target_geomap']] ) ) {
+							$region = $this->gainwp->config->options['ga_target_geomap'];
 						} else {
 							$region = false;
 						}
@@ -136,9 +136,9 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 						$region = false;
 					}
 
-					wp_enqueue_style( 'gacwp-nprogress', GAINWP_URL . 'common/nprogress/nprogress.css', null, GAINWP_CURRENT_VERSION );
+					wp_enqueue_style( 'gainwp-nprogress', GAINWP_URL . 'common/nprogress/nprogress.css', null, GAINWP_CURRENT_VERSION );
 
-					wp_enqueue_style( 'gacwp-backend-item-reports', GAINWP_URL . 'admin/css/admin-widgets.css', null, GAINWP_CURRENT_VERSION );
+					wp_enqueue_style( 'gainwp-backend-item-reports', GAINWP_URL . 'admin/css/admin-widgets.css', null, GAINWP_CURRENT_VERSION );
 
 					wp_register_style( 'jquery-ui-tooltip-html', GAINWP_URL . 'common/realtime/jquery.ui.tooltip.html.css' );
 
@@ -148,9 +148,9 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 
 					wp_register_script( 'googlecharts', 'https://www.gstatic.com/charts/loader.js', array(), null );
 
-					wp_enqueue_script( 'gacwp-nprogress', GAINWP_URL . 'common/nprogress/nprogress.js', array( 'jquery' ), GAINWP_CURRENT_VERSION );
+					wp_enqueue_script( 'gainwp-nprogress', GAINWP_URL . 'common/nprogress/nprogress.js', array( 'jquery' ), GAINWP_CURRENT_VERSION );
 
-					wp_enqueue_script( 'gacwp-backend-dashboard-reports', GAINWP_URL . 'common/js/reports5.js', array( 'jquery', 'googlecharts', 'gacwp-nprogress', 'jquery-ui-tooltip', 'jquery-ui-core', 'jquery-ui-position', 'jquery-ui-tooltip-html' ), GAINWP_CURRENT_VERSION, true );
+					wp_enqueue_script( 'gainwp-backend-dashboard-reports', GAINWP_URL . 'common/js/reports5.js', array( 'jquery', 'googlecharts', 'gainwp-nprogress', 'jquery-ui-tooltip', 'jquery-ui-core', 'jquery-ui-position', 'jquery-ui-tooltip-html' ), GAINWP_CURRENT_VERSION, true );
 
 					/* @formatter:off */
 
@@ -167,13 +167,13 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 					);
 
 
-					if ( $this->gacwp->config->options['user_api'] && ! $this->gacwp->config->options['backend_realtime_report'] ) {
+					if ( $this->gainwp->config->options['user_api'] && ! $this->gainwp->config->options['backend_realtime_report'] ) {
 						array_shift( $datelist );
 					}
 
-					wp_localize_script( 'gacwp-backend-dashboard-reports', 'gacwpItemData', array(
+					wp_localize_script( 'gainwp-backend-dashboard-reports', 'gainwpItemData', array(
 						'ajaxurl' => admin_url( 'admin-ajax.php' ),
-						'security' => wp_create_nonce( 'gacwp_backend_item_reports' ),
+						'security' => wp_create_nonce( 'gainwp_backend_item_reports' ),
 						'dateList' => $datelist,
 						'reportList' => array(
 							'sessions' => __( "Sessions", 'google-analytics-in-wp' ),
@@ -205,7 +205,7 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 							__( "No Data", 'google-analytics-in-wp' ),
 							__( "This report is unavailable", 'google-analytics-in-wp' ),
 							__( "report generated by", 'google-analytics-in-wp' ), //14
-							__( "This plugin needs an authorization:", 'google-analytics-in-wp' ) . ' <a href="' . menu_page_url( 'gacwp_settings', false ) . '">' . __( "authorize the plugin", 'google-analytics-in-wp' ) . '</a>.',
+							__( "This plugin needs an authorization:", 'google-analytics-in-wp' ) . ' <a href="' . menu_page_url( 'gainwp_settings', false ) . '">' . __( "authorize the plugin", 'google-analytics-in-wp' ) . '</a>.',
 							__( "Browser", 'google-analytics-in-wp' ), //16
 							__( "Operating System", 'google-analytics-in-wp' ),
 							__( "Screen Resolution", 'google-analytics-in-wp' ),
@@ -220,10 +220,10 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 							__( "Page Load Time", 'google-analytics-in-wp' ),
 							__( "Session Duration", 'google-analytics-in-wp' ),
 						),
-						'rtLimitPages' => $this->gacwp->config->options['ga_realtime_pages'],
-						'colorVariations' => GAINWP_Tools::variations( $this->gacwp->config->options['theme_color'] ),
+						'rtLimitPages' => $this->gainwp->config->options['ga_realtime_pages'],
+						'colorVariations' => GAINWP_Tools::variations( $this->gainwp->config->options['theme_color'] ),
 						'region' => $region,
-						'mapsApiKey' => apply_filters( 'gacwp_maps_api_key', $this->gacwp->config->options['maps_api_key'] ),
+						'mapsApiKey' => apply_filters( 'gainwp_maps_api_key', $this->gainwp->config->options['maps_api_key'] ),
 						'language' => get_bloginfo( 'language' ),
 						'viewList' => $views,
 						'scope' => 'admin-widgets',
@@ -239,12 +239,12 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 			 */
 			$contentstats_hooks = array( 'edit.php' );
 			if ( in_array( $hook, $contentstats_hooks ) ) {
-				if ( GAINWP_Tools::check_roles( $this->gacwp->config->options['access_back'] ) && $this->gacwp->config->options['backend_item_reports'] ) {
+				if ( GAINWP_Tools::check_roles( $this->gainwp->config->options['access_back'] ) && $this->gainwp->config->options['backend_item_reports'] ) {
 
-					if ( $this->gacwp->config->options['ga_target_geomap'] ) {
+					if ( $this->gainwp->config->options['ga_target_geomap'] ) {
 						$country_codes = GAINWP_Tools::get_countrycodes();
-						if ( isset( $country_codes[$this->gacwp->config->options['ga_target_geomap']] ) ) {
-							$region = $this->gacwp->config->options['ga_target_geomap'];
+						if ( isset( $country_codes[$this->gainwp->config->options['ga_target_geomap']] ) ) {
+							$region = $this->gainwp->config->options['ga_target_geomap'];
 						} else {
 							$region = false;
 						}
@@ -252,22 +252,22 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 						$region = false;
 					}
 
-					wp_enqueue_style( 'gacwp-nprogress', GAINWP_URL . 'common/nprogress/nprogress.css', null, GAINWP_CURRENT_VERSION );
+					wp_enqueue_style( 'gainwp-nprogress', GAINWP_URL . 'common/nprogress/nprogress.css', null, GAINWP_CURRENT_VERSION );
 
-					wp_enqueue_style( 'gacwp-backend-item-reports', GAINWP_URL . 'admin/css/item-reports.css', null, GAINWP_CURRENT_VERSION );
+					wp_enqueue_style( 'gainwp-backend-item-reports', GAINWP_URL . 'admin/css/item-reports.css', null, GAINWP_CURRENT_VERSION );
 
 					wp_enqueue_style( "wp-jquery-ui-dialog" );
 
 					wp_register_script( 'googlecharts', 'https://www.gstatic.com/charts/loader.js', array(), null );
 
-					wp_enqueue_script( 'gacwp-nprogress', GAINWP_URL . 'common/nprogress/nprogress.js', array( 'jquery' ), GAINWP_CURRENT_VERSION );
+					wp_enqueue_script( 'gainwp-nprogress', GAINWP_URL . 'common/nprogress/nprogress.js', array( 'jquery' ), GAINWP_CURRENT_VERSION );
 
-					wp_enqueue_script( 'gacwp-backend-item-reports', GAINWP_URL . 'common/js/reports5.js', array( 'gacwp-nprogress', 'googlecharts', 'jquery', 'jquery-ui-dialog' ), GAINWP_CURRENT_VERSION, true );
+					wp_enqueue_script( 'gainwp-backend-item-reports', GAINWP_URL . 'common/js/reports5.js', array( 'gainwp-nprogress', 'googlecharts', 'jquery', 'jquery-ui-dialog' ), GAINWP_CURRENT_VERSION, true );
 
 					/* @formatter:off */
-					wp_localize_script( 'gacwp-backend-item-reports', 'gacwpItemData', array(
+					wp_localize_script( 'gainwp-backend-item-reports', 'gainwpItemData', array(
 						'ajaxurl' => admin_url( 'admin-ajax.php' ),
-						'security' => wp_create_nonce( 'gacwp_backend_item_reports' ),
+						'security' => wp_create_nonce( 'gainwp_backend_item_reports' ),
 						'dateList' => array(
 							'today' => __( "Today", 'google-analytics-in-wp' ),
 							'yesterday' => __( "Yesterday", 'google-analytics-in-wp' ),
@@ -306,7 +306,7 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 							__( "No Data", 'google-analytics-in-wp' ),
 							__( "This report is unavailable", 'google-analytics-in-wp' ),
 							__( "report generated by", 'google-analytics-in-wp' ), //14
-							__( "This plugin needs an authorization:", 'google-analytics-in-wp' ) . ' <a href="' . menu_page_url( 'gacwp_settings', false ) . '">' . __( "authorize the plugin", 'google-analytics-in-wp' ) . '</a>.',
+							__( "This plugin needs an authorization:", 'google-analytics-in-wp' ) . ' <a href="' . menu_page_url( 'gainwp_settings', false ) . '">' . __( "authorize the plugin", 'google-analytics-in-wp' ) . '</a>.',
 							__( "Browser", 'google-analytics-in-wp' ), //16
 							__( "Operating System", 'google-analytics-in-wp' ),
 							__( "Screen Resolution", 'google-analytics-in-wp' ),
@@ -321,9 +321,9 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 							__( "Page Load Time", 'google-analytics-in-wp' ),
 							__( "Exit Rate", 'google-analytics-in-wp' ),
 						),
-						'colorVariations' => GAINWP_Tools::variations( $this->gacwp->config->options['theme_color'] ),
+						'colorVariations' => GAINWP_Tools::variations( $this->gainwp->config->options['theme_color'] ),
 						'region' => $region,
-						'mapsApiKey' => apply_filters( 'gacwp_maps_api_key', $this->gacwp->config->options['maps_api_key'] ),
+						'mapsApiKey' => apply_filters( 'gainwp_maps_api_key', $this->gainwp->config->options['maps_api_key'] ),
 						'language' => get_bloginfo( 'language' ),
 						'viewList' => false,
 						'scope' => 'admin-item',
@@ -336,13 +336,13 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 			/*
 			 * Settings Styles & Scripts
 			 */
-			$settings_hooks = array( '_page_gacwp_settings', '_page_gacwp_backend_settings', '_page_gacwp_frontend_settings', '_page_gacwp_tracking_settings', '_page_gacwp_errors_debugging' );
+			$settings_hooks = array( '_page_gainwp_settings', '_page_gainwp_backend_settings', '_page_gainwp_frontend_settings', '_page_gainwp_tracking_settings', '_page_gainwp_errors_debugging' );
 
 			if ( in_array( $new_hook, $settings_hooks ) ) {
 				wp_enqueue_style( 'wp-color-picker' );
 				wp_enqueue_script( 'wp-color-picker' );
 				wp_enqueue_script( 'wp-color-picker-script-handle', plugins_url( 'js/wp-color-picker-script.js', __FILE__ ), array( 'wp-color-picker' ), false, true );
-				wp_enqueue_script( 'gacwp-settings', plugins_url( 'js/settings.js', __FILE__ ), array( 'jquery' ), GAINWP_CURRENT_VERSION, true );
+				wp_enqueue_script( 'gainwp-settings', plugins_url( 'js/settings.js', __FILE__ ), array( 'jquery' ), GAINWP_CURRENT_VERSION, true );
 			}
 		}
 
@@ -354,7 +354,7 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 		 * @return array
 		 */
 		public function settings_link( $links ) {
-			$settings_link = '<a href="' . esc_url( get_admin_url( null, 'admin.php?page=gacwp_settings' ) ) . '">' . __( "Settings", 'google-analytics-in-wp' ) . '</a>';
+			$settings_link = '<a href="' . esc_url( get_admin_url( null, 'admin.php?page=gainwp_settings' ) ) . '">' . __( "Settings", 'google-analytics-in-wp' ) . '</a>';
 			array_unshift( $links, $settings_link );
 			return $links;
 		}
@@ -365,14 +365,14 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 		function admin_notice() {
 			$currentScreen = get_current_screen();
 
-			if ( ! current_user_can( 'manage_options' ) || strpos( $currentScreen->base, '_gacwp_' ) === false ) {
+			if ( ! current_user_can( 'manage_options' ) || strpos( $currentScreen->base, '_gainwp_' ) === false ) {
 				return;
 			}
 
-			if ( get_option( 'gacwp_got_updated' ) ) :
+			if ( get_option( 'gainwp_got_updated' ) ) :
 				?>
-<div id="gacwp-notice" class="notice is-dismissible">
-	<p><?php echo sprintf( __('Google Analytics for WP has been updated to version %s.', 'google-analytics-in-wp' ), GAINWP_CURRENT_VERSION).' '.sprintf( __('For details, check out %1$s.', 'google-analytics-in-wp' ), sprintf(' <a href="https://intelligencewp.com/google-analytics-in-wordpress/?utm_source=gacwp_notice&utm_medium=link&utm_content=release_notice&utm_campaign=gacwp">%s</a>', __('the plugin documentation', 'google-analytics-in-wp') ) ); ?></p>
+<div id="gainwp-notice" class="notice is-dismissible">
+	<p><?php echo sprintf( __('Google Analytics for WP has been updated to version %s.', 'google-analytics-in-wp' ), GAINWP_CURRENT_VERSION).' '.sprintf( __('For details, check out %1$s.', 'google-analytics-in-wp' ), sprintf(' <a href="https://intelligencewp.com/google-analytics-in-wordpress/?utm_source=gainwp_notice&utm_medium=link&utm_content=release_notice&utm_campaign=gainwp">%s</a>', __('the plugin documentation', 'google-analytics-in-wp') ) ); ?></p>
 </div>
 
 			<?php

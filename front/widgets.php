@@ -11,12 +11,12 @@ if ( ! defined( 'ABSPATH' ) )
 
 final class GAINWP_Frontend_Widget extends WP_Widget {
 
-	private $gacwp;
+	private $gainwp;
 
 	public function __construct() {
-		$this->gacwp = GAINWP();
+		$this->gainwp = GAINWP();
 
-		parent::__construct( 'gacwp-frontwidget-report', __( 'Google Analytics', 'google-analytics-in-wp' ), array( 'description' => __( "Will display your google analytics stats in a widget", 'google-analytics-in-wp' ) ) );
+		parent::__construct( 'gainwp-frontwidget-report', __( 'Google Analytics', 'google-analytics-in-wp' ), array( 'description' => __( "Will display your google analytics stats in a widget", 'google-analytics-in-wp' ) ) );
 		// Frontend Styles
 		if ( is_active_widget( false, false, $this->id_base, true ) ) {
 			add_action( 'wp_enqueue_scripts', array( $this, 'load_styles_scripts' ) );
@@ -28,8 +28,8 @@ final class GAINWP_Frontend_Widget extends WP_Widget {
 		$lang = explode( '-', $lang );
 		$lang = $lang[0];
 
-		wp_enqueue_style( 'gacwp-front-widget', GAINWP_URL . 'front/css/widgets.css', null, GAINWP_CURRENT_VERSION );
-		wp_enqueue_script( 'gacwp-front-widget', GAINWP_URL . 'front/js/widgets.js', array( 'jquery' ), GAINWP_CURRENT_VERSION );
+		wp_enqueue_style( 'gainwp-front-widget', GAINWP_URL . 'front/css/widgets.css', null, GAINWP_CURRENT_VERSION );
+		wp_enqueue_script( 'gainwp-front-widget', GAINWP_URL . 'front/js/widgets.js', array( 'jquery' ), GAINWP_CURRENT_VERSION );
 		wp_enqueue_script( 'googlecharts', 'https://www.gstatic.com/charts/loader.js', array(), null );
 	}
 
@@ -42,9 +42,9 @@ final class GAINWP_Frontend_Widget extends WP_Widget {
 			echo $args['before_title'] . $widget_title . $args['after_title'];
 		}
 
-		if ( isset( $this->gacwp->config->options['theme_color'] ) ) {
-			$css = "colors:['" . $this->gacwp->config->options['theme_color'] . "','" . GAINWP_Tools::colourVariator( $this->gacwp->config->options['theme_color'], - 20 ) . "'],";
-			$color = $this->gacwp->config->options['theme_color'];
+		if ( isset( $this->gainwp->config->options['theme_color'] ) ) {
+			$css = "colors:['" . $this->gainwp->config->options['theme_color'] . "','" . GAINWP_Tools::colourVariator( $this->gainwp->config->options['theme_color'], - 20 ) . "'],";
+			$color = $this->gainwp->config->options['theme_color'];
 		} else {
 			$css = "";
 			$color = "#3366CC";
@@ -77,13 +77,13 @@ final class GAINWP_Frontend_Widget extends WP_Widget {
 		}
 		switch ( $instance['display'] ) {
 			case '1' :
-				echo '<div id="gacwp-widget"><div id="gacwp-widgetchart"></div><div id="gacwp-widgettotals"></div></div>';
+				echo '<div id="gainwp-widget"><div id="gainwp-widgetchart"></div><div id="gainwp-widgettotals"></div></div>';
 				break;
 			case '2' :
-				echo '<div id="gacwp-widget"><div id="gacwp-widgetchart"></div></div>';
+				echo '<div id="gainwp-widget"><div id="gainwp-widgetchart"></div></div>';
 				break;
 			case '3' :
-				echo '<div id="gacwp-widget"><div id="gacwp-widgettotals"></div></div>';
+				echo '<div id="gainwp-widget"><div id="gainwp-widgettotals"></div></div>';
 				break;
 		}
 		?>
@@ -91,22 +91,22 @@ final class GAINWP_Frontend_Widget extends WP_Widget {
 	google.charts.load('current', {'packages':['corechart']});
 	google.charts.setOnLoadCallback( GAINWPWidgetLoad );
 	function GAINWPWidgetLoad (){
-		jQuery.post("<?php echo admin_url( 'admin-ajax.php' ); ?>", {action: "ajax_frontwidget_report", gacwp_number: "<?php echo $this->number; ?>", gacwp_optionname: "<?php  echo $this->option_name; ?>" }, function(response){
+		jQuery.post("<?php echo admin_url( 'admin-ajax.php' ); ?>", {action: "ajax_frontwidget_report", gainwp_number: "<?php echo $this->number; ?>", gainwp_optionname: "<?php  echo $this->option_name; ?>" }, function(response){
 			if (!jQuery.isNumeric(response) && jQuery.isArray(response)){
-				if (jQuery("#gacwp-widgetchart")[0]){
-					gacwpFrontWidgetData = response[0];
-					gacwp_drawFrontWidgetChart(gacwpFrontWidgetData);
+				if (jQuery("#gainwp-widgetchart")[0]){
+					gainwpFrontWidgetData = response[0];
+					gainwp_drawFrontWidgetChart(gainwpFrontWidgetData);
 				}
-				if (jQuery("#gacwp-widgettotals")[0]){
-					gacwp_drawFrontWidgetTotals(response[1]);
+				if (jQuery("#gainwp-widgettotals")[0]){
+					gainwp_drawFrontWidgetTotals(response[1]);
 				}
 			}else{
-				jQuery("#gacwp-widgetchart").css({"background-color":"#F7F7F7","height":"auto","padding-top":"50px","padding-bottom":"50px","color":"#000","text-align":"center"});
-				jQuery("#gacwp-widgetchart").html("<?php __( "This report is unavailable", 'google-analytics-in-wp' ); ?> ("+response+")");
+				jQuery("#gainwp-widgetchart").css({"background-color":"#F7F7F7","height":"auto","padding-top":"50px","padding-bottom":"50px","color":"#000","text-align":"center"});
+				jQuery("#gainwp-widgetchart").html("<?php __( "This report is unavailable", 'google-analytics-in-wp' ); ?> ("+response+")");
 			}
 		});
 	}
-	function gacwp_drawFrontWidgetChart(response) {
+	function gainwp_drawFrontWidgetChart(response) {
 		var data = google.visualization.arrayToDataTable(response);
 		var options = {
 			legend: { position: "none" },
@@ -118,21 +118,21 @@ final class GAINWP_Frontend_Widget extends WP_Widget {
 			hAxis: { textPosition: "none"},
 			vAxis: { textPosition: "none", minValue: 0, gridlines: { color: "transparent" }, baselineColor: "transparent"}
 		}
-		var chart = new google.visualization.AreaChart(document.getElementById("gacwp-widgetchart"));
+		var chart = new google.visualization.AreaChart(document.getElementById("gainwp-widgetchart"));
 		<?php echo $formater; ?>
 		chart.draw(data, options);
 	}
-	function gacwp_drawFrontWidgetTotals(response) {
+	function gainwp_drawFrontWidgetTotals(response) {
 		if ( null == response ){
 			response = 0;
 		}
-		jQuery("#gacwp-widgettotals").html('<div class="gacwp-left"><?php _e( "Period:", 'google-analytics-in-wp' ); ?></div> <div class="gacwp-right"><?php echo $periodtext; ?> </div><div class="gacwp-left"><?php _e( "Sessions:", 'google-analytics-in-wp' ); ?></div> <div class="gacwp-right">'+response+'</div>');
+		jQuery("#gainwp-widgettotals").html('<div class="gainwp-left"><?php _e( "Period:", 'google-analytics-in-wp' ); ?></div> <div class="gainwp-right"><?php echo $periodtext; ?> </div><div class="gainwp-left"><?php _e( "Sessions:", 'google-analytics-in-wp' ); ?></div> <div class="gainwp-right">'+response+'</div>');
 	}
 </script>
 <?php
 		if ( 1 == $instance['give_credits'] ) :
 			?>
-<div style="text-align: right; width: 100%; font-size: 0.8em; clear: both; margin-right: 5px;"><?php _e( 'generated by', 'google-analytics-in-wp' ); ?> <a href="https://intelligencewp.com/google-analytics-in-wordpress/?utm_source=gacwp_report&utm_medium=link&utm_content=front_widget&utm_campaign=gacwp" rel="nofollow" style="text-decoration: none; font-size: 1em;">GAINWP</a>&nbsp;
+<div style="text-align: right; width: 100%; font-size: 0.8em; clear: both; margin-right: 5px;"><?php _e( 'generated by', 'google-analytics-in-wp' ); ?> <a href="https://intelligencewp.com/google-analytics-in-wordpress/?utm_source=gainwp_report&utm_medium=link&utm_content=front_widget&utm_campaign=gainwp" rel="nofollow" style="text-decoration: none; font-size: 1em;">GAINWP</a>&nbsp;
 </div>
 
 		<?php

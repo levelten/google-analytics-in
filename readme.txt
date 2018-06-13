@@ -1,4 +1,4 @@
-=== Google Analytics Connector WP ===
+=== Google Analytics IN ===
 Contributors: tomdude,deconf
 Tags: analytics,google analytics,google analytics dashboard,google analytics plugin,google analytics widget,gtag
 Requires at least: 3.5
@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Connects Google Analytics with your WordPress site.
 
 == Description ==
-Google Analytics Connector for WordPress easily integrates Google Analytics tracking and dashboard reporting in your website in just minutes.
+Google Analytics IN easily integrates Google Analytics tracking and dashboard reporting in your website in just minutes.
 
 This plugin was created from the excellent Google Analytics Dashboard for WordPress (GADWP) plugin to maintain a robust, direct Google Analytics integration.
 
@@ -59,7 +59,7 @@ User privacy oriented features:
 - option to follow Do Not Track (DNT) sent by browsers
 - support for user tracking opt-out
 
-Google Analytics Connector for WP enables you to easily track events like:
+Google Analytics IN for WP enables you to easily track events like:
  
 - Downloads
 - Emails 
@@ -70,7 +70,7 @@ Google Analytics Connector for WP enables you to easily track events like:
 - Page Scrolling Depth
 - Custom event categories, actions and labels using annotated HTML elements
 
-With Google Analytics Connector for WP you can use custom dimensions to track:
+With Google Analytics IN for WP you can use custom dimensions to track:
 
 - Authors
 - Publication year
@@ -104,7 +104,7 @@ As an alternative to Google Analytics tracking code, you can use Google Tag Mana
 - Hashmarks, outbound links, telephones and e-mails tracking
 - Custom event categories, actions and labels using annotated HTML elements
 
-= Google Analytics Connector for WP on Multisite =
+= Google Analytics IN for WP on Multisite =
 
 This plugin is fully compatible with multisite network installs, allowing three setup modes:
 
@@ -112,8 +112,8 @@ This plugin is fully compatible with multisite network installs, allowing three 
 - Mode 2: network activated using a single Google Analytics account
 - Mode 3: network deactivated using multiple Google Analytics accounts
 
-> <strong>Google Analytics Connector for WP on GitHub</strong><br>
-> You can submit feature requests or bugs on [Google Analytics Connector for WordPress](https://github.com/levelten/google-analytics-in-wp) repository.
+> <strong>Google Analytics IN for WP on GitHub</strong><br>
+> You can submit feature requests or bugs on [Google Analytics IN for WordPress](https://github.com/levelten/google-analytics-in) repository.
 
 == Why this Plugin ==
 
@@ -121,7 +121,7 @@ The [IntelligenceWP](https://wordpress.org/plugins/intelligence) project leverag
 
 After the Google Analytics Dashboard for WordPress changed maintainers, users expressed concern over the new auth process and sharing Google API keys and analytics data.
 
-The Google Analytics Connector uses a direct auth process where API keys only reside in your WordPress site so data access is not shared with any 3rd parties.
+The Google Analytics IN uses a direct auth process where API keys only reside in your WordPress site so data access is not shared with any 3rd parties.
 
 == Credits ==
 
@@ -130,7 +130,7 @@ This plugin was originally created by [Alin Marcu](https://deconf.com) as the Go
 == Installation ==
 
 1. Upload the full google-analytics-in-wp directory into your wp-content/plugins directory.
-2. In WordPress select Plugins from your sidebar menu and activate the Google Analytics Connector for WP plugin.
+2. In WordPress select Plugins from your sidebar menu and activate the Google Analytics IN for WP plugin.
 3. Open the plugin configuration page, which is located under Google Analytics menu.
 4. Authorize the plugin to connect to Google Analytics using the Authorize Plugin button.
 5. Go back to the plugin configuration page, which is located under Google Analytics menu to update/set your settings.
@@ -144,25 +144,25 @@ No, once the plugin is authorized and a default domain is selected the Google An
 
 = Some settings are missing in the video tutorial =
 
-We are constantly improving Google Analytics Connector for WP, sometimes the video tutorial may be a little outdated.
+We are constantly improving Google Analytics IN for WP, sometimes the video tutorial may be a little outdated.
 
 = How can I suggest a new feature, contribute or report a bug? =
 
-You can submit pull requests, feature requests and bug reports on [our GitHub repository](https://github.com/levelten/google-analytics-in-wp).
+You can submit pull requests, feature requests and bug reports on [our GitHub repository](https://github.com/levelten/google-analytics-in).
 
 = Documentation, Tutorials and FAQ =
 
-For documentation, tutorials, FAQ and videos check out: [Google Analytics Connector for WP documentation](https://intelligencewp.com/google-analytics-in-wordpress/).
+For documentation, tutorials, FAQ and videos check out: [Google Analytics IN for WP documentation](https://intelligencewp.com/google-analytics-in-wordpress/).
 
 == Screenshots ==
 
 == Localization ==
 
-You can translate Google Analytics Connector for WP on [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/google-analytics-in-wp).
+You can translate Google Analytics IN for WP on [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/google-analytics-in).
 
 == License ==
 
-Google Analytics Connector for WP it's released under the GPLv2, you can use it free of charge on your personal or commercial website.
+Google Analytics IN for WP it's released under the GPLv2, you can use it free of charge on your personal or commercial website.
 
 == Upgrade Notice ==
 
@@ -176,8 +176,8 @@ Google Analytics Connector for WP it's released under the GPLv2, you can use it 
 * Bug Fixes:	
 	* fixes for user opt-out feature 
 * Enhancements: 
-	* use <em>gacwp_useroptout</em> shortcode to easily generate opt-out buttons and links
-	* adding <em>gacwp_gtag_commands</em> and <em>gacwp_gtag_script_path</em> hooks to allow further gtag (Global Site Tag) code customization
+	* use <em>gainwp_useroptout</em> shortcode to easily generate opt-out buttons and links
+	* adding <em>gainwp_gtag_commands</em> and <em>gainwp_gtag_script_path</em> hooks to allow further gtag (Global Site Tag) code customization
 	* adds opt-out and DNT support for Google Tag Manager	
 	
 = 5.3.1.1 =
@@ -217,7 +217,7 @@ Google Analytics Connector for WP it's released under the GPLv2, you can use it 
 	* disable autocomplete for the access code input field to avoid reuse of the same unique authorization code
 	* GAINWP Endpoint improvements
 	* Error reporting improvements
-	* introducing the gacwp_maps_api_key filter
+	* introducing the gainwp_maps_api_key filter
 * Bug Fixes:	
 	* use the theme color palette for the frontend widget 	 
 

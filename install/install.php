@@ -188,6 +188,6 @@ class GAINWP_Install {
 			delete_option( 'ga_dash_refresh_token' );
 			delete_option( 'ga_dash_profile_list' );
 		}
-		add_option( 'gacwp_options', json_encode( $options ) );
+		add_option( 'gainwp_options', json_encode( $options ) );
 	}
 }

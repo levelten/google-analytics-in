@@ -1,1 +1,1 @@
-jQuery(window).resize(function(){if(typeof gacwp_drawFrontWidgetChart=="function"&&typeof gacwpFrontWidgetData!=="undefined"&&!jQuery.isNumeric(gacwpFrontWidgetData)){gacwp_drawFrontWidgetChart(gacwpFrontWidgetData)}});
+jQuery(window).resize(function(){if(typeof gainwp_drawFrontWidgetChart=="function"&&typeof gainwpFrontWidgetData!=="undefined"&&!jQuery.isNumeric(gainwpFrontWidgetData)){gainwp_drawFrontWidgetChart(gainwpFrontWidgetData)}});

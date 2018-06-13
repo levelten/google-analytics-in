@@ -8,7 +8,7 @@
 
  		- added an action hook to IO -> Abstract -> MakeRequest to enable custom endpoint support:
  
-			   public function makeRequest(Deconfc_Http_Request $request)
+			   public function makeRequest(Deconfin_Http_Request $request)
 			   {
 			
 				  	// Add support for GAINWP Endpoint

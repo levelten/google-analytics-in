@@ -13,18 +13,18 @@ if ( ! class_exists( 'GAINWP_Backend_Ajax' ) ) {
 
 	final class GAINWP_Backend_Ajax {
 
-		private $gacwp;
+		private $gainwp;
 
 		public function __construct() {
-			$this->gacwp = GAINWP();
+			$this->gainwp = GAINWP();
 
-			if ( GAINWP_Tools::check_roles( $this->gacwp->config->options['access_back'] ) && ( ( 1 == $this->gacwp->config->options['backend_item_reports'] ) || ( 1 == $this->gacwp->config->options['dashboard_widget'] ) ) ) {
+			if ( GAINWP_Tools::check_roles( $this->gainwp->config->options['access_back'] ) && ( ( 1 == $this->gainwp->config->options['backend_item_reports'] ) || ( 1 == $this->gainwp->config->options['dashboard_widget'] ) ) ) {
 				// Items action
-				add_action( 'wp_ajax_gacwp_backend_item_reports', array( $this, 'ajax_item_reports' ) );
+				add_action( 'wp_ajax_gainwp_backend_item_reports', array( $this, 'ajax_item_reports' ) );
 			}
 			if ( current_user_can( 'manage_options' ) ) {
 				// Admin Widget action
-				add_action( 'wp_ajax_gacwp_dismiss_notices', array( $this, 'ajax_dismiss_notices' ) );
+				add_action( 'wp_ajax_gainwp_dismiss_notices', array( $this, 'ajax_dismiss_notices' ) );
 			}
 		}
 
@@ -34,10 +34,10 @@ if ( ! class_exists( 'GAINWP_Backend_Ajax' ) ) {
 		 * @return json|int
 		 */
 		public function ajax_item_reports() {
-			if ( ! isset( $_POST['gacwp_security_backend_item_reports'] ) || ! wp_verify_nonce( $_POST['gacwp_security_backend_item_reports'], 'gacwp_backend_item_reports' ) ) {
+			if ( ! isset( $_POST['gainwp_security_backend_item_reports'] ) || ! wp_verify_nonce( $_POST['gainwp_security_backend_item_reports'], 'gainwp_backend_item_reports' ) ) {
 				wp_die( - 30 );
 			}
-			if ( isset( $_POST['projectId'] ) && $this->gacwp->config->options['switch_profile'] && 'false' !== $_POST['projectId'] ) {
+			if ( isset( $_POST['projectId'] ) && $this->gainwp->config->options['switch_profile'] && 'false' !== $_POST['projectId'] ) {
 				$projectId = $_POST['projectId'];
 			} else {
 				$projectId = false;
@@ -64,24 +64,24 @@ if ( ! class_exists( 'GAINWP_Backend_Ajax' ) ) {
 				ob_clean();
 			}
 
-			if ( ! ( GAINWP_Tools::check_roles( $this->gacwp->config->options['access_back'] ) && ( ( 1 == $this->gacwp->config->options['backend_item_reports'] ) || ( 1 == $this->gacwp->config->options['dashboard_widget'] ) ) ) ) {
+			if ( ! ( GAINWP_Tools::check_roles( $this->gainwp->config->options['access_back'] ) && ( ( 1 == $this->gainwp->config->options['backend_item_reports'] ) || ( 1 == $this->gainwp->config->options['dashboard_widget'] ) ) ) ) {
 				wp_die( - 31 );
 			}
-			if ( $this->gacwp->config->options['token'] && $this->gacwp->config->options['tableid_jail'] && $from && $to ) {
-				if ( null === $this->gacwp->gapi_controller ) {
-					$this->gacwp->gapi_controller = new GAINWP_GAPI_Controller();
+			if ( $this->gainwp->config->options['token'] && $this->gainwp->config->options['tableid_jail'] && $from && $to ) {
+				if ( null === $this->gainwp->gapi_controller ) {
+					$this->gainwp->gapi_controller = new GAINWP_GAPI_Controller();
 				}
 			} else {
 				wp_die( - 24 );
 			}
 			if ( false == $projectId ) {
-				$projectId = $this->gacwp->config->options['tableid_jail'];
+				$projectId = $this->gainwp->config->options['tableid_jail'];
 			}
-			$profile_info = GAINWP_Tools::get_selected_profile( $this->gacwp->config->options['ga_profiles_list'], $projectId );
+			$profile_info = GAINWP_Tools::get_selected_profile( $this->gainwp->config->options['ga_profiles_list'], $projectId );
 			if ( isset( $profile_info[4] ) ) {
-				$this->gacwp->gapi_controller->timeshift = $profile_info[4];
+				$this->gainwp->gapi_controller->timeshift = $profile_info[4];
 			} else {
-				$this->gacwp->gapi_controller->timeshift = (int) current_time( 'timestamp' ) - time();
+				$this->gainwp->gapi_controller->timeshift = (int) current_time( 'timestamp' ) - time();
 			}
 
 			if ( $filter_id ) {
@@ -94,7 +94,7 @@ if ( ! class_exists( 'GAINWP_Backend_Ajax' ) ) {
 				}
 
 				// allow URL correction before sending an API request
-				$filter = apply_filters( 'gacwp_backenditem_uri', $uri, $filter_id );
+				$filter = apply_filters( 'gainwp_backenditem_uri', $uri, $filter_id );
 
 				$lastchar = substr( $filter, - 1 );
 
@@ -113,7 +113,7 @@ if ( ! class_exists( 'GAINWP_Backend_Ajax' ) ) {
 			$results = array();
 
 			foreach ( $queries as $value ) {
-				$results[] = $this->gacwp->gapi_controller->get( $projectId, $value, $from, $to, $filter, $metric );
+				$results[] = $this->gainwp->gapi_controller->get( $projectId, $value, $from, $to, $filter, $metric );
 			}
 
 			wp_send_json( $results );
@@ -125,7 +125,7 @@ if ( ! class_exists( 'GAINWP_Backend_Ajax' ) ) {
 		 * @return json|int
 		 */
 		public function ajax_dismiss_notices() {
-			if ( ! isset( $_POST['gacwp_security_dismiss_notices'] ) || ! wp_verify_nonce( $_POST['gacwp_security_dismiss_notices'], 'gacwp_dismiss_notices' ) ) {
+			if ( ! isset( $_POST['gainwp_security_dismiss_notices'] ) || ! wp_verify_nonce( $_POST['gainwp_security_dismiss_notices'], 'gainwp_dismiss_notices' ) ) {
 				wp_die( - 30 );
 			}
 
@@ -133,7 +133,7 @@ if ( ! class_exists( 'GAINWP_Backend_Ajax' ) ) {
 				wp_die( - 31 );
 			}
 
-			delete_option( 'gacwp_got_updated' );
+			delete_option( 'gainwp_got_updated' );
 
 			wp_die();
 		}
