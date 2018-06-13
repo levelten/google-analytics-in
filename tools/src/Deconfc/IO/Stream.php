@@ -88,7 +88,7 @@ class Deconfc_IO_Stream extends Deconfc_IO_Abstract
         $default_options['ssl'] : array();
 
     // Add support for GAINWP Endpoint
-    $requestSslContext = apply_filters('gacwp_endpoint_stream_options', $requestSslContext, $request);
+    $requestSslContext = apply_filters('gainwp_endpoint_stream_options', $requestSslContext, $request);
 
     if (!$this->client->isAppEngine() && !array_key_exists("cafile", $requestSslContext)) {
       $requestSslContext["cafile"] = dirname(__FILE__) . '/cacerts.pem';

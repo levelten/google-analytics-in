@@ -12,7 +12,7 @@
 			   {
 			
 				  	// Add support for GAINWP Endpoint
-				  	do_action('gacwp_endpoint_support', $request);
+				  	do_action('gainwp_endpoint_support', $request);
 				  	
 				  	...
 				 

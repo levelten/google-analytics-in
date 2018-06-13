@@ -124,7 +124,7 @@ abstract class Deconfc_IO_Abstract
 //Intel_Df::watchdog('Deconfc_IO_Abstract::makeRequest $request', print_r($request, 1));
   	// Add support for GAINWP Endpoint
     // TODO: disabled to prevent request to prior endpoint
-  	//do_action('gacwp_endpoint_support', $request);
+  	//do_action('gainwp_endpoint_support', $request);
 
     // First, check to see if we have a valid cached version.
     $cached = $this->getCachedRequest($request);
