@@ -9,9 +9,9 @@
 if ( ! defined( 'ABSPATH' ) )
 	exit();
 
-if ( ! class_exists( 'GACWP_Tracking' ) ) {
+if ( ! class_exists( 'GAINWP_Tracking' ) ) {
 
-	class GACWP_Tracking {
+	class GAINWP_Tracking {
 
 		private $gacwp;
 
@@ -22,13 +22,13 @@ if ( ! class_exists( 'GACWP_Tracking' ) ) {
 		public $tagmanager;
 
 		public function __construct() {
-			$this->gacwp = GACWP();
+			$this->gacwp = GAINWP();
 
 			$this->init();
 		}
 
 		public function tracking_code() { // Removed since 5.0
-			GACWP_Tools::doing_it_wrong( __METHOD__, __( "This method is deprecated, read the documentation!", 'google-analytics-connector-wp' ), '5.0' );
+			GAINWP_Tools::doing_it_wrong( __METHOD__, __( "This method is deprecated, read the documentation!", 'google-analytics-connector-wp' ), '5.0' );
 		}
 
 		public static function gacwp_user_optout( $atts, $content = "" ) {
@@ -44,7 +44,7 @@ if ( ! class_exists( 'GACWP_Tracking' ) ) {
 
 		public function init() {
 			// excluded roles
-			if ( GACWP_Tools::check_roles( $this->gacwp->config->options['track_exclude'], true ) || ( $this->gacwp->config->options['superadmin_tracking'] && current_user_can( 'manage_network' ) ) ) {
+			if ( GAINWP_Tools::check_roles( $this->gacwp->config->options['track_exclude'], true ) || ( $this->gacwp->config->options['superadmin_tracking'] && current_user_can( 'manage_network' ) ) ) {
 				return;
 			}
 
@@ -54,13 +54,13 @@ if ( ! class_exists( 'GACWP_Tracking' ) ) {
 				require_once 'tracking-analytics.php';
 
 				if ( 1 == $this->gacwp->config->options['ga_with_gtag'] ) {
-					$this->analytics = new GACWP_Tracking_GlobalSiteTag();
+					$this->analytics = new GAINWP_Tracking_GlobalSiteTag();
 				} else {
-					$this->analytics = new GACWP_Tracking_Analytics();
+					$this->analytics = new GAINWP_Tracking_Analytics();
 				}
 
 				if ( $this->gacwp->config->options['amp_tracking_analytics'] ) {
-					$this->analytics_amp = new GACWP_Tracking_Analytics_AMP();
+					$this->analytics_amp = new GAINWP_Tracking_Analytics_AMP();
 				}
 			}
 
@@ -68,7 +68,7 @@ if ( ! class_exists( 'GACWP_Tracking' ) ) {
 
 				// Tag Manager
 				require_once 'tracking-tagmanager.php';
-				$this->tagmanager = new GACWP_Tracking_TagManager();
+				$this->tagmanager = new GAINWP_Tracking_TagManager();
 			}
 
 			add_shortcode( 'gacwp_useroptout', array( $this, 'gacwp_user_optout' ) );

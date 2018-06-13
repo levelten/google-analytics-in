@@ -9,9 +9,9 @@
 if ( ! defined( 'ABSPATH' ) )
 	exit();
 
-if ( ! class_exists( 'GACWP_Tools' ) ) {
+if ( ! class_exists( 'GAINWP_Tools' ) ) {
 
-	class GACWP_Tools {
+	class GAINWP_Tools {
 
 		public static function get_countrycodes() {
 			include 'iso3166.php';
@@ -165,8 +165,8 @@ if ( ! class_exists( 'GACWP_Tools' ) ) {
 		 * @return boolean - If template file was found
 		 **/
 		public static function load_view( $path, $data = array() ) {
-			if ( file_exists( GACWP_DIR . $path ) ) {
-				require_once ( GACWP_DIR . $path );
+			if ( file_exists( GAINWP_DIR . $path ) ) {
+				require_once ( GAINWP_DIR . $path );
 				return true;
 			}
 			return false;
@@ -245,7 +245,7 @@ if ( ! class_exists( 'GACWP_Tools' ) ) {
 			global $wp_version;
 
 			$options['wp_version'] = $wp_version;
-			$options['gacwp_version'] = GACWP_CURRENT_VERSION;
+			$options['gacwp_version'] = GAINWP_CURRENT_VERSION;
 			if ( $options['token'] ) {
 				$options['token'] = 'HIDDEN';
 			}

@@ -5,7 +5,7 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
 ?>
-<!-- BEGIN GACWP v<?php echo GACWP_CURRENT_VERSION; ?> Tag Manager - https://intelligencewp.com/google-analytics-connector-wordpress/ -->
+<!-- BEGIN GAINWP v<?php echo GAINWP_CURRENT_VERSION; ?> Tag Manager - https://intelligencewp.com/google-analytics-connector-wordpress/ -->
 <script>
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(<?php echo $data['vars']; ?>);
@@ -18,5 +18,5 @@
 	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 	})(window,document,'script','dataLayer','<?php echo $data['containerid']; ?>');
 </script>
-<!-- END GACWP Tag Manager -->
+<!-- END GAINWP Tag Manager -->
 

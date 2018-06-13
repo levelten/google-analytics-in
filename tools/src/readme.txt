@@ -4,14 +4,14 @@
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
  */
  
- * Custom GACWP EndPoint:
+ * Custom GAINWP EndPoint:
 
  		- added an action hook to IO -> Abstract -> MakeRequest to enable custom endpoint support:
  
 			   public function makeRequest(Deconfc_Http_Request $request)
 			   {
 			
-				  	// Add support for GACWP Endpoint
+				  	// Add support for GAINWP Endpoint
 				  	do_action('gacwp_endpoint_support', $request);
 				  	
 				  	...

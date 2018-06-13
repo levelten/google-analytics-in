@@ -9,16 +9,16 @@
 if ( ! defined( 'ABSPATH' ) )
 	exit();
 
-if ( ! class_exists( 'GACWP_Backend_Ajax' ) ) {
+if ( ! class_exists( 'GAINWP_Backend_Ajax' ) ) {
 
-	final class GACWP_Backend_Ajax {
+	final class GAINWP_Backend_Ajax {
 
 		private $gacwp;
 
 		public function __construct() {
-			$this->gacwp = GACWP();
+			$this->gacwp = GAINWP();
 
-			if ( GACWP_Tools::check_roles( $this->gacwp->config->options['access_back'] ) && ( ( 1 == $this->gacwp->config->options['backend_item_reports'] ) || ( 1 == $this->gacwp->config->options['dashboard_widget'] ) ) ) {
+			if ( GAINWP_Tools::check_roles( $this->gacwp->config->options['access_back'] ) && ( ( 1 == $this->gacwp->config->options['backend_item_reports'] ) || ( 1 == $this->gacwp->config->options['dashboard_widget'] ) ) ) {
 				// Items action
 				add_action( 'wp_ajax_gacwp_backend_item_reports', array( $this, 'ajax_item_reports' ) );
 			}
@@ -64,12 +64,12 @@ if ( ! class_exists( 'GACWP_Backend_Ajax' ) ) {
 				ob_clean();
 			}
 
-			if ( ! ( GACWP_Tools::check_roles( $this->gacwp->config->options['access_back'] ) && ( ( 1 == $this->gacwp->config->options['backend_item_reports'] ) || ( 1 == $this->gacwp->config->options['dashboard_widget'] ) ) ) ) {
+			if ( ! ( GAINWP_Tools::check_roles( $this->gacwp->config->options['access_back'] ) && ( ( 1 == $this->gacwp->config->options['backend_item_reports'] ) || ( 1 == $this->gacwp->config->options['dashboard_widget'] ) ) ) ) {
 				wp_die( - 31 );
 			}
 			if ( $this->gacwp->config->options['token'] && $this->gacwp->config->options['tableid_jail'] && $from && $to ) {
 				if ( null === $this->gacwp->gapi_controller ) {
-					$this->gacwp->gapi_controller = new GACWP_GAPI_Controller();
+					$this->gacwp->gapi_controller = new GAINWP_GAPI_Controller();
 				}
 			} else {
 				wp_die( - 24 );
@@ -77,7 +77,7 @@ if ( ! class_exists( 'GACWP_Backend_Ajax' ) ) {
 			if ( false == $projectId ) {
 				$projectId = $this->gacwp->config->options['tableid_jail'];
 			}
-			$profile_info = GACWP_Tools::get_selected_profile( $this->gacwp->config->options['ga_profiles_list'], $projectId );
+			$profile_info = GAINWP_Tools::get_selected_profile( $this->gacwp->config->options['ga_profiles_list'], $projectId );
 			if ( isset( $profile_info[4] ) ) {
 				$this->gacwp->gapi_controller->timeshift = $profile_info[4];
 			} else {

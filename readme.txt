@@ -215,7 +215,7 @@ Google Analytics Connector for WP it's released under the GPLv2, you can use it 
 * Enhancements:  
 	* more informative alerts and suggestions on the authorization screen
 	* disable autocomplete for the access code input field to avoid reuse of the same unique authorization code
-	* GACWP Endpoint improvements
+	* GAINWP Endpoint improvements
 	* Error reporting improvements
 	* introducing the gacwp_maps_api_key filter
 * Bug Fixes:	

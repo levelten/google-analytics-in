@@ -9,16 +9,16 @@
 if ( ! defined( 'ABSPATH' ) )
 	exit();
 
-if ( ! class_exists( 'GACWP_Common_Ajax' ) ) {
+if ( ! class_exists( 'GAINWP_Common_Ajax' ) ) {
 
-	final class GACWP_Common_Ajax {
+	final class GAINWP_Common_Ajax {
 
 		private $gacwp;
 
 		public function __construct() {
-			$this->gacwp = GACWP();
+			$this->gacwp = GAINWP();
 
-			if ( GACWP_Tools::check_roles( $this->gacwp->config->options['access_back'] ) || GACWP_Tools::check_roles( $this->gacwp->config->options['access_front'] ) ) {
+			if ( GAINWP_Tools::check_roles( $this->gacwp->config->options['access_back'] ) || GAINWP_Tools::check_roles( $this->gacwp->config->options['access_front'] ) ) {
 				add_action( 'wp_ajax_gacwp_set_error', array( $this, 'ajax_set_error' ) );
 			}
 		}
@@ -33,7 +33,7 @@ if ( ! class_exists( 'GACWP_Common_Ajax' ) ) {
 				wp_die( - 40 );
 			}
 			$timeout = 24 * 60 * 60;
-			GACWP_Tools::set_error( $_POST['response'], $timeout );
+			GAINWP_Tools::set_error( $_POST['response'], $timeout );
 			wp_die();
 		}
 	}

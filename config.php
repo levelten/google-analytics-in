@@ -9,9 +9,9 @@
 if ( ! defined( 'ABSPATH' ) )
 	exit();
 
-if ( ! class_exists( 'GACWP_Config' ) ) {
+if ( ! class_exists( 'GAINWP_Config' ) ) {
 
-	final class GACWP_Config {
+	final class GAINWP_Config {
 
 		public $options;
 
@@ -47,8 +47,8 @@ if ( ! class_exists( 'GACWP_Config' ) ) {
 			}
 			if ( isset( $item['slug'] ) && 'google-analytics-connector-wp' == $item['slug'] ) {
 				// Only when a minor update is available
-				if ( $this->get_major_version( GACWP_CURRENT_VERSION ) == $this->get_major_version( $item['new_version'] ) ) {
-					return ( $this->get_major_version( GACWP_CURRENT_VERSION ) == $this->get_major_version( $item['new_version'] ) );
+				if ( $this->get_major_version( GAINWP_CURRENT_VERSION ) == $this->get_major_version( $item['new_version'] ) ) {
+					return ( $this->get_major_version( GAINWP_CURRENT_VERSION ) == $this->get_major_version( $item['new_version'] ) );
 				}
 			}
 			return $update;
@@ -199,7 +199,7 @@ if ( ! class_exists( 'GACWP_Config' ) ) {
 			global $blog_id;
 
 			if ( ! get_option( 'gacwp_options' ) ) {
-				GACWP_Install::install();
+				GAINWP_Install::install();
 			}
 			$this->options = (array) json_decode( get_option( 'gacwp_options' ) );
 			// Maintain Compatibility
@@ -210,7 +210,7 @@ if ( ! class_exists( 'GACWP_Config' ) ) {
 				$network_options = (array) json_decode( $get_network_options );
 				if ( isset( $network_options['network_mode'] ) && ( $network_options['network_mode'] ) ) {
 					if ( ! is_network_admin() && ! empty( $network_options['ga_profiles_list'] ) && isset( $network_options['network_tableid']->$blog_id ) ) {
-						$network_options['ga_profiles_list'] = array( 0 => GACWP_Tools::get_selected_profile( $network_options['ga_profiles_list'], $network_options['network_tableid']->$blog_id ) );
+						$network_options['ga_profiles_list'] = array( 0 => GAINWP_Tools::get_selected_profile( $network_options['ga_profiles_list'], $network_options['network_tableid']->$blog_id ) );
 						$network_options['tableid_jail'] = $network_options['ga_profiles_list'][0][1];
 					}
 					$this->options = array_merge( $this->options, $network_options );
@@ -224,23 +224,23 @@ if ( ! class_exists( 'GACWP_Config' ) ) {
 			$flag = false;
 
 			$prevver = get_option( 'gacwp_version' );
-			if ( $prevver && GACWP_CURRENT_VERSION != $prevver ) {
+			if ( $prevver && GAINWP_CURRENT_VERSION != $prevver ) {
 				$flag = true;
-				update_option( 'gacwp_version', GACWP_CURRENT_VERSION );
+				update_option( 'gacwp_version', GAINWP_CURRENT_VERSION );
 				update_option( 'gacwp_got_updated', true );
-				GACWP_Tools::clear_cache();
-				GACWP_Tools::delete_cache( 'last_error' );
+				GAINWP_Tools::clear_cache();
+				GAINWP_Tools::delete_cache( 'last_error' );
 				if ( is_multisite() ) { // Cleanup errors and cookies on the entire network
-					foreach ( GACWP_Tools::get_sites( array( 'number' => apply_filters( 'gacwp_sites_limit', 100 ) ) ) as $blog ) {
+					foreach ( GAINWP_Tools::get_sites( array( 'number' => apply_filters( 'gacwp_sites_limit', 100 ) ) ) as $blog ) {
 						switch_to_blog( $blog['blog_id'] );
-						GACWP_Tools::delete_cache( 'gapi_errors' );
+						GAINWP_Tools::delete_cache( 'gapi_errors' );
 						restore_current_blog();
 					}
 				} else {
-					GACWP_Tools::delete_cache( 'gapi_errors' );
+					GAINWP_Tools::delete_cache( 'gapi_errors' );
 				}
 
-				// Enable GACWP EndPoint for those updating from a version lower than 5.2, introduced in GACWP v5.3
+				// Enable GAINWP EndPoint for those updating from a version lower than 5.2, introduced in GAINWP v5.3
 				if (version_compare( $prevver, '5.2', '<' ) ) {
 					$this->options['with_endpoint'] = 2;
 				}
@@ -439,7 +439,7 @@ if ( ! class_exists( 'GACWP_Config' ) ) {
 				$options = get_site_option( 'gadash_network_options' );
 				if ( $options ) {
 					$options = (array) json_decode( $options );
-					$options = GACWP_Tools::array_keys_rename( $options, $batch );
+					$options = GAINWP_Tools::array_keys_rename( $options, $batch );
 					update_site_option( 'gacwp_network_options', json_encode( $this->validate_data( $options ) ) );
 					delete_site_option( 'gadash_network_options' );
 				}
@@ -448,7 +448,7 @@ if ( ! class_exists( 'GACWP_Config' ) ) {
 			$options = get_option( 'gadash_options' );
 			if ( $options ) {
 				$options = (array) json_decode( $options );
-				$options = GACWP_Tools::array_keys_rename( $options, $batch );
+				$options = GAINWP_Tools::array_keys_rename( $options, $batch );
 				update_option( 'gacwp_options', json_encode( $this->validate_data( $options ) ) );
 				delete_option( 'gadash_options' );
 			}

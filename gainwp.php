@@ -17,18 +17,18 @@ if ( ! defined( 'ABSPATH' ) )
 	exit();
 
 // Plugin Version
-if ( ! defined( 'GACWP_CURRENT_VERSION' ) ) {
-	define( 'GACWP_CURRENT_VERSION', '5.4.0' );
+if ( ! defined( 'GAINWP_CURRENT_VERSION' ) ) {
+	define( 'GAINWP_CURRENT_VERSION', '5.4.0' );
 }
 
-if ( ! defined( 'GACWP_ENDPOINT_URL' ) ) {
-	define( 'GACWP_ENDPOINT_URL', '' );
+if ( ! defined( 'GAINWP_ENDPOINT_URL' ) ) {
+	define( 'GAINWP_ENDPOINT_URL', '' );
 }
 
 
-if ( ! class_exists( 'GACWP_Manager' ) ) {
+if ( ! class_exists( 'GAINWP_Manager' ) ) {
 
-	final class GACWP_Manager {
+	final class GAINWP_Manager {
 
 		private static $instance = null;
 
@@ -78,15 +78,15 @@ if ( ! class_exists( 'GACWP_Manager' ) ) {
 		}
 
 		/**
-		 * Creates a single instance for GACWP and makes sure only one instance is present in memory.
+		 * Creates a single instance for GAINWP and makes sure only one instance is present in memory.
 		 *
-		 * @return GACWP_Manager
+		 * @return GAINWP_Manager
 		 */
 		public static function instance() {
 			if ( null === self::$instance ) {
 				self::$instance = new self();
 				self::$instance->setup();
-				self::$instance->config = new GACWP_Config();
+				self::$instance->config = new GAINWP_Config();
 			}
 			return self::$instance;
 		}
@@ -97,34 +97,34 @@ if ( ! class_exists( 'GACWP_Manager' ) ) {
 		private function setup() {
 
 			// Plugin Path
-			if ( ! defined( 'GACWP_DIR' ) ) {
-				define( 'GACWP_DIR', plugin_dir_path( __FILE__ ) );
+			if ( ! defined( 'GAINWP_DIR' ) ) {
+				define( 'GAINWP_DIR', plugin_dir_path( __FILE__ ) );
 			}
 
 			// Plugin URL
-			if ( ! defined( 'GACWP_URL' ) ) {
-				define( 'GACWP_URL', plugin_dir_url( __FILE__ ) );
+			if ( ! defined( 'GAINWP_URL' ) ) {
+				define( 'GAINWP_URL', plugin_dir_url( __FILE__ ) );
 			}
 
 			// Plugin main File
-			if ( ! defined( 'GACWP_FILE' ) ) {
-				define( 'GACWP_FILE', __FILE__ );
+			if ( ! defined( 'GAINWP_FILE' ) ) {
+				define( 'GAINWP_FILE', __FILE__ );
 			}
 
 			/*
 			 * Load Tools class
 			 */
-			include_once ( GACWP_DIR . 'tools/tools.php' );
+			include_once ( GAINWP_DIR . 'tools/tools.php' );
 
 			/*
 			 * Load Config class
 			 */
-			include_once ( GACWP_DIR . 'config.php' );
+			include_once ( GAINWP_DIR . 'config.php' );
 
 			/*
 			 * Load GAPI Controller class
 			 */
-			include_once ( GACWP_DIR . 'tools/gapi.php' );
+			include_once ( GAINWP_DIR . 'tools/gapi.php' );
 
 			/*
 			 * Plugin i18n
@@ -139,20 +139,20 @@ if ( ! class_exists( 'GACWP_Manager' ) ) {
 			/*
 			 * Include Install
 			 */
-			include_once ( GACWP_DIR . 'install/install.php' );
-			register_activation_hook( GACWP_FILE, array( 'GACWP_Install', 'install' ) );
+			include_once ( GAINWP_DIR . 'install/install.php' );
+			register_activation_hook( GAINWP_FILE, array( 'GAINWP_Install', 'install' ) );
 
 			/*
 			 * Include Uninstall
 			 */
-			include_once ( GACWP_DIR . 'install/uninstall.php' );
-			register_uninstall_hook( GACWP_FILE, array( 'GACWP_Uninstall', 'uninstall' ) );
+			include_once ( GAINWP_DIR . 'install/uninstall.php' );
+			register_uninstall_hook( GAINWP_FILE, array( 'GAINWP_Uninstall', 'uninstall' ) );
 
 			/*
 			 * Load Frontend Widgets
 			 * (needed during ajax)
 			 */
-			include_once ( GACWP_DIR . 'front/widgets.php' );
+			include_once ( GAINWP_DIR . 'front/widgets.php' );
 
 			/*
 			 * Add Frontend Widgets
@@ -172,7 +172,7 @@ if ( ! class_exists( 'GACWP_Manager' ) ) {
 		 * Register Frontend Widgets
 		 */
 		public function add_frontend_widget() {
-			register_widget( 'GACWP_Frontend_Widget' );
+			register_widget( 'GAINWP_Frontend_Widget' );
 		}
 
 		/**
@@ -181,80 +181,80 @@ if ( ! class_exists( 'GACWP_Manager' ) ) {
 		public function load() {
 			if ( is_admin() ) {
 				if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-					if ( GACWP_Tools::check_roles( self::$instance->config->options['access_back'] ) ) {
+					if ( GAINWP_Tools::check_roles( self::$instance->config->options['access_back'] ) ) {
 						/*
 						 * Load Backend ajax actions
 						 */
-						include_once ( GACWP_DIR . 'admin/ajax-actions.php' );
-						self::$instance->backend_actions = new GACWP_Backend_Ajax();
+						include_once ( GAINWP_DIR . 'admin/ajax-actions.php' );
+						self::$instance->backend_actions = new GAINWP_Backend_Ajax();
 					}
 
 					/*
 					 * Load Frontend ajax actions
 					 */
-					include_once ( GACWP_DIR . 'front/ajax-actions.php' );
-					self::$instance->frontend_actions = new GACWP_Frontend_Ajax();
+					include_once ( GAINWP_DIR . 'front/ajax-actions.php' );
+					self::$instance->frontend_actions = new GAINWP_Frontend_Ajax();
 
 					/*
 					 * Load Common ajax actions
 					 */
-					include_once ( GACWP_DIR . 'common/ajax-actions.php' );
-					self::$instance->common_actions = new GACWP_Common_Ajax();
+					include_once ( GAINWP_DIR . 'common/ajax-actions.php' );
+					self::$instance->common_actions = new GAINWP_Common_Ajax();
 
 					if ( self::$instance->config->options['backend_item_reports'] ) {
 						/*
 						 * Load Backend Item Reports for Quick Edit
 						 */
-						include_once ( GACWP_DIR . 'admin/item-reports.php' );
-						self::$instance->backend_item_reports = new GACWP_Backend_Item_Reports();
+						include_once ( GAINWP_DIR . 'admin/item-reports.php' );
+						self::$instance->backend_item_reports = new GAINWP_Backend_Item_Reports();
 					}
-				} else if ( GACWP_Tools::check_roles( self::$instance->config->options['access_back'] ) ) {
+				} else if ( GAINWP_Tools::check_roles( self::$instance->config->options['access_back'] ) ) {
 
 					/*
 					 * Load Backend Setup
 					 */
-					include_once ( GACWP_DIR . 'admin/setup.php' );
-					self::$instance->backend_setup = new GACWP_Backend_Setup();
+					include_once ( GAINWP_DIR . 'admin/setup.php' );
+					self::$instance->backend_setup = new GAINWP_Backend_Setup();
 
 					if ( self::$instance->config->options['dashboard_widget'] ) {
 						/*
 						 * Load Backend Widget
 						 */
-						include_once ( GACWP_DIR . 'admin/widgets.php' );
-						self::$instance->backend_widgets = new GACWP_Backend_Widgets();
+						include_once ( GAINWP_DIR . 'admin/widgets.php' );
+						self::$instance->backend_widgets = new GAINWP_Backend_Widgets();
 					}
 
 					if ( self::$instance->config->options['backend_item_reports'] ) {
 						/*
 						 * Load Backend Item Reports
 						 */
-						include_once ( GACWP_DIR . 'admin/item-reports.php' );
-						self::$instance->backend_item_reports = new GACWP_Backend_Item_Reports();
+						include_once ( GAINWP_DIR . 'admin/item-reports.php' );
+						self::$instance->backend_item_reports = new GAINWP_Backend_Item_Reports();
 					}
 				}
 			} else {
-				if ( GACWP_Tools::check_roles( self::$instance->config->options['access_front'] ) ) {
+				if ( GAINWP_Tools::check_roles( self::$instance->config->options['access_front'] ) ) {
 					/*
 					 * Load Frontend Setup
 					 */
-					include_once ( GACWP_DIR . 'front/setup.php' );
-					self::$instance->frontend_setup = new GACWP_Frontend_Setup();
+					include_once ( GAINWP_DIR . 'front/setup.php' );
+					self::$instance->frontend_setup = new GAINWP_Frontend_Setup();
 
 					if ( self::$instance->config->options['frontend_item_reports'] ) {
 						/*
 						 * Load Frontend Item Reports
 						 */
-						include_once ( GACWP_DIR . 'front/item-reports.php' );
-						self::$instance->frontend_item_reports = new GACWP_Frontend_Item_Reports();
+						include_once ( GAINWP_DIR . 'front/item-reports.php' );
+						self::$instance->frontend_item_reports = new GAINWP_Frontend_Item_Reports();
 					}
 				}
 
-				if ( ! GACWP_Tools::check_roles( self::$instance->config->options['track_exclude'], true ) && 'disabled' != self::$instance->config->options['tracking_type'] ) {
+				if ( ! GAINWP_Tools::check_roles( self::$instance->config->options['track_exclude'], true ) && 'disabled' != self::$instance->config->options['tracking_type'] ) {
 					/*
 					 * Load tracking class
 					 */
-					include_once ( GACWP_DIR . 'front/tracking.php' );
-					self::$instance->tracking = new GACWP_Tracking();
+					include_once ( GAINWP_DIR . 'front/tracking.php' );
+					self::$instance->tracking = new GAINWP_Tracking();
 				}
 			}
 		}
@@ -262,13 +262,13 @@ if ( ! class_exists( 'GACWP_Manager' ) ) {
 }
 
 /**
- * Returns a unique instance of GACWP
+ * Returns a unique instance of GAINWP
  */
-function GACWP() {
-	return GACWP_Manager::instance();
+function GAINWP() {
+	return GAINWP_Manager::instance();
 }
 
 /*
- * Start GACWP
+ * Start GAINWP
  */
-GACWP();
+GAINWP();

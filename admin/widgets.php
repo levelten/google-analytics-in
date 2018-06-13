@@ -9,15 +9,15 @@
 if ( ! defined( 'ABSPATH' ) )
 	exit();
 
-if ( ! class_exists( 'GACWP_Backend_Widgets' ) ) {
+if ( ! class_exists( 'GAINWP_Backend_Widgets' ) ) {
 
-	class GACWP_Backend_Widgets {
+	class GAINWP_Backend_Widgets {
 
 		private $gacwp;
 
 		public function __construct() {
-			$this->gacwp = GACWP();
-			if ( GACWP_Tools::check_roles( $this->gacwp->config->options['access_back'] ) && ( 1 == $this->gacwp->config->options['dashboard_widget'] ) ) {
+			$this->gacwp = GAINWP();
+			if ( GAINWP_Tools::check_roles( $this->gacwp->config->options['access_back'] ) && ( 1 == $this->gacwp->config->options['dashboard_widget'] ) ) {
 				add_action( 'wp_dashboard_setup', array( $this, 'add_widget' ) );
 			}
 		}

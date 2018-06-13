@@ -9,9 +9,9 @@
 if ( ! defined( 'ABSPATH' ) )
 	exit();
 
-if ( ! class_exists( 'GACWP_GAPI_Controller' ) ) {
+if ( ! class_exists( 'GAINWP_GAPI_Controller' ) ) {
 
-	final class GACWP_GAPI_Controller {
+	final class GAINWP_GAPI_Controller {
 
 		public $client;
 
@@ -26,9 +26,9 @@ if ( ! class_exists( 'GACWP_GAPI_Controller' ) ) {
 		private $access = array( '273426309930-jj2asv61tg4si8nn7ts5ag5l6si8s3vp.apps.googleusercontent.com', '1RI8eTV0YymAp0n1UxGPYA0x_T' );
 
 		public function __construct() {
-			$this->gacwp = GACWP();
+			$this->gacwp = GAINWP();
 
-			include_once ( GACWP_DIR . 'tools/src/Deconfc/autoload.php' );
+			include_once ( GAINWP_DIR . 'tools/src/Deconfc/autoload.php' );
 			$config = new Deconfc_Config();
 			$config->setCacheClass( 'Deconfc_Cache_Null' );
 			if ( function_exists( 'curl_version' ) ) {
@@ -40,8 +40,8 @@ if ( ! class_exists( 'GACWP_GAPI_Controller' ) ) {
 					$rightversion = false;
 				}
 
-				if ( $rightversion && defined( 'GACWP_IP_VERSION' ) && GACWP_IP_VERSION ) {
-					$curl_options[CURLOPT_IPRESOLVE] = GACWP_IP_VERSION; // Force CURL_IPRESOLVE_V4 or CURL_IPRESOLVE_V6
+				if ( $rightversion && defined( 'GAINWP_IP_VERSION' ) && GAINWP_IP_VERSION ) {
+					$curl_options[CURLOPT_IPRESOLVE] = GAINWP_IP_VERSION; // Force CURL_IPRESOLVE_V4 or CURL_IPRESOLVE_V6
 				}
 
 				// add Proxy server settings to curl, if defined
@@ -63,7 +63,7 @@ if ( ! class_exists( 'GACWP_GAPI_Controller' ) ) {
 			$this->client = new Deconfc_Client( $config );
 			$this->client->setScopes( array( 'https://www.googleapis.com/auth/analytics.readonly' ) );
 			$this->client->setAccessType( 'offline' );
-			$this->client->setApplicationName( 'GACWP ' . GACWP_CURRENT_VERSION );
+			$this->client->setApplicationName( 'GAINWP ' . GAINWP_CURRENT_VERSION );
 			$this->client->setRedirectUri( 'urn:ietf:wg:oauth:2.0:oob' );
 			$this->managequota = 'u' . get_current_user_id() . 's' . get_current_blog_id();
 			$this->access = array_map( array( $this, 'map' ), $this->access );
@@ -76,7 +76,7 @@ if ( ! class_exists( 'GACWP_GAPI_Controller' ) ) {
 			}
 
 			/**
-			 * GACWP Endpoint support
+			 * GAINWP Endpoint support
 			 */
 			add_action( 'gacwp_endpoint_support', array( $this, 'add_endpoint_support' ) );
 
@@ -93,14 +93,14 @@ if ( ! class_exists( 'GACWP_GAPI_Controller' ) ) {
 						$this->gacwp->config->options['token'] = $this->client->getAccessToken();
 					} catch ( Deconfc_IO_Exception $e ) {
 						$timeout = $this->get_timeouts( 'midnight' );
-						GACWP_Tools::set_error( $e, $timeout );
+						GAINWP_Tools::set_error( $e, $timeout );
 					} catch ( Deconfc_Service_Exception $e ) {
 						$timeout = $this->get_timeouts( 'midnight' );
-						GACWP_Tools::set_error( $e, $timeout );
+						GAINWP_Tools::set_error( $e, $timeout );
 						$this->reset_token();
 					} catch ( Exception $e ) {
 						$timeout = $this->get_timeouts( 'midnight' );
-						GACWP_Tools::set_error( $e, $timeout );
+						GAINWP_Tools::set_error( $e, $timeout );
 						$this->reset_token();
 					}
 					if ( is_multisite() && $this->gacwp->config->options['network_mode'] ) {
@@ -141,9 +141,9 @@ if ( ! class_exists( 'GACWP_GAPI_Controller' ) ) {
 					}
 				}
 
-				$url = str_replace( 'https://accounts.google.com/o/oauth2/token', GACWP_ENDPOINT_URL . 'gacwp-token.php', $url );
+				$url = str_replace( 'https://accounts.google.com/o/oauth2/token', GAINWP_ENDPOINT_URL . 'gacwp-token.php', $url );
 
-				$url = str_replace( 'https://accounts.google.com/o/oauth2/revoke', GACWP_ENDPOINT_URL . 'gacwp-revoke.php', $url );
+				$url = str_replace( 'https://accounts.google.com/o/oauth2/revoke', GAINWP_ENDPOINT_URL . 'gacwp-revoke.php', $url );
 
 				$request->setUrl( $url );
 
@@ -163,7 +163,7 @@ if ( ! class_exists( 'GACWP_GAPI_Controller' ) ) {
 		 * @return boolean
 		 */
 		public function gapi_errors_handler() {
-			$errors = GACWP_Tools::get_cache( 'gapi_errors' );
+			$errors = GAINWP_Tools::get_cache( 'gapi_errors' );
 
 			if ( false === $errors || ! isset( $errors[0] ) ) { // invalid error
 				return false;
@@ -227,7 +227,7 @@ if ( ! class_exists( 'GACWP_GAPI_Controller' ) ) {
 		 */
 		public function token_request() {
 			$data['authUrl'] = $this->client->createAuthUrl();
-			GACWP_Tools::load_view( 'admin/views/access-code.php', $data );
+			GAINWP_Tools::load_view( 'admin/views/access-code.php', $data );
 		}
 
 		/**
@@ -264,21 +264,21 @@ if ( ! class_exists( 'GACWP_GAPI_Controller' ) ) {
 
 				if ( empty( $ga_profiles_list ) ) {
 					$timeout = $this->get_timeouts( 'midnight' );
-					GACWP_Tools::set_error( 'No properties were found in this account!', $timeout );
+					GAINWP_Tools::set_error( 'No properties were found in this account!', $timeout );
 				} else {
-					GACWP_Tools::delete_cache( 'last_error' );
+					GAINWP_Tools::delete_cache( 'last_error' );
 				}
 				return $ga_profiles_list;
 			} catch ( Deconfc_IO_Exception $e ) {
 				$timeout = $this->get_timeouts( 'midnight' );
-				GACWP_Tools::set_error( $e, $timeout );
+				GAINWP_Tools::set_error( $e, $timeout );
 				return $ga_profiles_list;
 			} catch ( Deconfc_Service_Exception $e ) {
 				$timeout = $this->get_timeouts( 'midnight' );
-				GACWP_Tools::set_error( $e, $timeout );
+				GAINWP_Tools::set_error( $e, $timeout );
 			} catch ( Exception $e ) {
 				$timeout = $this->get_timeouts( 'midnight' );
-				GACWP_Tools::set_error( $e, $timeout );
+				GAINWP_Tools::set_error( $e, $timeout );
 			}
 		}
 
@@ -334,7 +334,7 @@ if ( ! class_exists( 'GACWP_GAPI_Controller' ) ) {
 				} else {
 					$interval = 'daily';
 				}
-				$transient = GACWP_Tools::get_cache( $serial );
+				$transient = GAINWP_Tools::get_cache( $serial );
 				if ( false === $transient ) {
 					if ( $this->gapi_errors_handler() ) {
 						return - 23;
@@ -345,21 +345,21 @@ if ( ! class_exists( 'GACWP_GAPI_Controller' ) ) {
 						$sampling['date'] = date( 'Y-m-d H:i:s' );
 						$sampling['percent'] = number_format( ( $data->getSampleSize() / $data->getSampleSpace() ) * 100, 2 ) . '%';
 						$sampling['sessions'] = $data->getSampleSize() . ' / ' . $data->getSampleSpace();
-						GACWP_Tools::set_cache( 'sampleddata', $sampling, 30 * 24 * 3600 );
-						GACWP_Tools::set_cache( $serial, $data, $this->get_timeouts( 'hourly' ) ); // refresh every hour if data is sampled
+						GAINWP_Tools::set_cache( 'sampleddata', $sampling, 30 * 24 * 3600 );
+						GAINWP_Tools::set_cache( $serial, $data, $this->get_timeouts( 'hourly' ) ); // refresh every hour if data is sampled
 					} else {
-						GACWP_Tools::set_cache( $serial, $data, $this->get_timeouts( $interval ) );
+						GAINWP_Tools::set_cache( $serial, $data, $this->get_timeouts( $interval ) );
 					}
 				} else {
 					$data = $transient;
 				}
 			} catch ( Deconfc_Service_Exception $e ) {
 				$timeout = $this->get_timeouts( 'midnight' );
-				GACWP_Tools::set_error( $e, $timeout );
+				GAINWP_Tools::set_error( $e, $timeout );
 				return $e->getCode();
 			} catch ( Exception $e ) {
 				$timeout = $this->get_timeouts( 'midnight' );
-				GACWP_Tools::set_error( $e, $timeout );
+				GAINWP_Tools::set_error( $e, $timeout );
 				return $e->getCode();
 			}
 
@@ -675,7 +675,7 @@ if ( ! class_exists( 'GACWP_GAPI_Controller' ) ) {
 			if ( $this->gacwp->config->options['ga_target_geomap'] ) {
 				$dimensions = 'ga:city, ga:region';
 
-				$country_codes = GACWP_Tools::get_countrycodes();
+				$country_codes = GAINWP_Tools::get_countrycodes();
 				if ( isset( $country_codes[$this->gacwp->config->options['ga_target_geomap']] ) ) {
 					$local_filter = 'ga:country==' . ( $country_codes[$this->gacwp->config->options['ga_target_geomap']] );
 					$title = __( "Cities from", 'google-analytics-connector-wp' ) . ' ' . __( $country_codes[$this->gacwp->config->options['ga_target_geomap']] );
@@ -858,23 +858,23 @@ if ( ! class_exists( 'GACWP_GAPI_Controller' ) ) {
 			$dimensions = 'rt:pagePath,rt:source,rt:keyword,rt:trafficType,rt:visitorType,rt:pageTitle';
 			try {
 				$serial = 'qr_realtimecache_' . $this->get_serial( $projectId );
-				$transient = GACWP_Tools::get_cache( $serial );
+				$transient = GAINWP_Tools::get_cache( $serial );
 				if ( false === $transient ) {
 					if ( $this->gapi_errors_handler() ) {
 						return - 23;
 					}
 					$data = $this->service->data_realtime->get( 'ga:' . $projectId, $metrics, array( 'dimensions' => $dimensions, 'quotaUser' => $this->managequota . 'p' . $projectId ) );
-					GACWP_Tools::set_cache( $serial, $data, 55 );
+					GAINWP_Tools::set_cache( $serial, $data, 55 );
 				} else {
 					$data = $transient;
 				}
 			} catch ( Deconfc_Service_Exception $e ) {
 				$timeout = $this->get_timeouts( 'midnight' );
-				GACWP_Tools::set_error( $e, $timeout );
+				GAINWP_Tools::set_error( $e, $timeout );
 				return $e->getCode();
 			} catch ( Exception $e ) {
 				$timeout = $this->get_timeouts( 'midnight' );
-				GACWP_Tools::set_error( $e, $timeout );
+				GAINWP_Tools::set_error( $e, $timeout );
 				return $e->getCode();
 			}
 			if ( $data->getRows() < 1 ) {

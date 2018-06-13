@@ -10,10 +10,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit();
 }
 
-final class GACWP_Settings {
+final class GAINWP_Settings {
 
 	private static function update_options( $who, $validation_error = 0 ) {
-		$gacwp = GACWP();
+		$gacwp = GAINWP();
 		$network_settings = false;
 		$options = $gacwp->config->options; // Get current options
 		if ( isset( $_POST['options']['gacwp_hidden'] ) && isset( $_POST['options'] ) && ( isset( $_POST['gacwp_security'] ) && wp_verify_nonce( $_POST['gacwp_security'], 'gacwp_form' ) ) && !$validation_error && 'Reset' != $who ) {
@@ -90,7 +90,7 @@ final class GACWP_Settings {
 	}
 
 	private static function global_notices( $who, &$validation_error = 0, $options = array() ) {
-	  $gacwp = GACWP();
+	  $gacwp = GAINWP();
 	  $message = '';
 
 	  if ( isset( $_POST['options']['gacwp_hidden'] ) ) {
@@ -113,7 +113,7 @@ final class GACWP_Settings {
 	}
 
 	public static function tracking_settings() {
-		$gacwp = GACWP();
+		$gacwp = GAINWP();
 
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
@@ -183,7 +183,7 @@ final class GACWP_Settings {
 								<tr>
 									<td class="gacwp-settings-title"></td>
 									<td>
-										<?php $profile_info = GACWP_Tools::get_selected_profile($gacwp->config->options['ga_profiles_list'], $gacwp->config->options['tableid_jail']); ?>
+										<?php $profile_info = GAINWP_Tools::get_selected_profile($gacwp->config->options['ga_profiles_list'], $gacwp->config->options['tableid_jail']); ?>
 										<?php if (!empty($profile_info[2])) : ?>
 										  <?php echo '<pre>' . __("View Name:", 'google-analytics-connector-wp') . "\t" . esc_html($profile_info[0]) . "<br />" . __("Tracking ID:", 'google-analytics-connector-wp') . "\t" . esc_html($profile_info[2]) . "<br />" . __("Default URL:", 'google-analytics-connector-wp') . "\t" . esc_html($profile_info[3]) . "<br />" . __("Time Zone:", 'google-analytics-connector-wp') . "\t" . esc_html($profile_info[5]) . '</pre>';?>
 									  <?php else : ?>
@@ -842,13 +842,13 @@ final class GACWP_Settings {
 
 	public static function errors_debugging() {
 
-		$gacwp = GACWP();
+		$gacwp = GAINWP();
 
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
 
-		$anonim = GACWP_Tools::anonymize_options( $gacwp->config->options );
+		$anonim = GAINWP_Tools::anonymize_options( $gacwp->config->options );
 
 		$options = self::update_options( 'frontend' );
 		$message = self::global_notices( 'frontend' );
@@ -878,12 +878,12 @@ final class GACWP_Settings {
 							</tr>
 							<tr>
 								<td>
-									<?php $errors_count = GACWP_Tools::get_cache( 'errors_count' ); ?>
+									<?php $errors_count = GAINWP_Tools::get_cache( 'errors_count' ); ?>
 									<pre class="gacwp-settings-logdata"><?php echo '<span>' . __("Count: ", 'google-analytics-connector-wp') . '</span>' . (int)$errors_count;?></pre>
-									<?php $errors = print_r( GACWP_Tools::get_cache( 'last_error' ), true ) ? esc_html( print_r( GACWP_Tools::get_cache( 'last_error' ), true ) ) : ''; ?>
+									<?php $errors = print_r( GAINWP_Tools::get_cache( 'last_error' ), true ) ? esc_html( print_r( GAINWP_Tools::get_cache( 'last_error' ), true ) ) : ''; ?>
 									<?php $errors = str_replace( 'Deconfc_', 'Google_', $errors); ?>
 									<pre class="gacwp-settings-logdata"><?php echo '<span>' . __("Last Error: ", 'google-analytics-connector-wp') . '</span>' . "\n" . $errors;?></pre>
-									<pre class="gacwp-settings-logdata"><?php echo '<span>' . __("GAPI Error: ", 'google-analytics-connector-wp') . '</span>'; echo "\n" . esc_html( print_r( GACWP_Tools::get_cache( 'gapi_errors' ), true ) ) ?></pre>
+									<pre class="gacwp-settings-logdata"><?php echo '<span>' . __("GAPI Error: ", 'google-analytics-connector-wp') . '</span>'; echo "\n" . esc_html( print_r( GAINWP_Tools::get_cache( 'gapi_errors' ), true ) ) ?></pre>
 									<br />
 									<hr>
 								</td>
@@ -895,7 +895,7 @@ final class GACWP_Settings {
 							</tr>
 							<tr>
 								<td>
-									<?php $sampling = GACWP_TOOLS::get_cache( 'sampleddata' ); ?>
+									<?php $sampling = GAINWP_TOOLS::get_cache( 'sampleddata' ); ?>
 									<?php if ( $sampling ) :?>
 									<?php printf( __( "Last Detected on %s.", 'google-analytics-connector-wp' ), '<strong>'. $sampling['date'] . '</strong>' );?>
 									<br />
@@ -930,7 +930,7 @@ final class GACWP_Settings {
 							</tr>
 							<tr>
 								<td>
-									<pre class="gacwp-settings-logdata"><?php echo esc_html(GACWP_Tools::system_info());?></pre>
+									<pre class="gacwp-settings-logdata"><?php echo esc_html(GAINWP_Tools::system_info());?></pre>
 									<br />
 									<hr>
 								</td>
@@ -942,7 +942,7 @@ final class GACWP_Settings {
 	}
 
 	public static function general_settings() {
-		$gacwp = GACWP();
+		$gacwp = GAINWP();
 
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
@@ -951,7 +951,7 @@ final class GACWP_Settings {
 		$options = self::update_options( 'general' );
 		printf( '<div id="gapi-warning" class="updated"><p>%1$s <a href="https://intelligencewp.com/google-analytics-connector-wordpress/?utm_source=gacwp_config&utm_medium=link&utm_content=general_screen&utm_campaign=gacwp">%2$s</a></p></div>', __( 'Loading the required libraries. If this results in a blank screen or a fatal error, try this solution:', 'google-analytics-connector-wp' ), __( 'Library conflicts between WordPress plugins', 'google-analytics-connector-wp' ) );
 		if ( null === $gacwp->gapi_controller ) {
-			$gacwp->gapi_controller = new GACWP_GAPI_Controller();
+			$gacwp->gapi_controller = new GAINWP_GAPI_Controller();
 		}
 		echo '<script type="text/javascript">jQuery("#gapi-warning").hide()</script>';
 
@@ -960,8 +960,8 @@ final class GACWP_Settings {
 				try {
 					$gacwp_access_code = $_POST['gacwp_access_code'];
 					update_option( 'gacwp_redeemed_code', $gacwp_access_code );
-					GACWP_Tools::delete_cache( 'gapi_errors' );
-					GACWP_Tools::delete_cache( 'last_error' );
+					GAINWP_Tools::delete_cache( 'gapi_errors' );
+					GAINWP_Tools::delete_cache( 'last_error' );
 
 					$gacwp->gapi_controller->client->authenticate( $_POST['gacwp_access_code'] );
 					$gacwp->config->options['token'] = $gacwp->gapi_controller->client->getAccessToken();
@@ -974,7 +974,7 @@ final class GACWP_Settings {
 						if ( is_array ( $profiles ) && ! empty( $profiles ) ) {
 							$gacwp->config->options['ga_profiles_list'] = $profiles;
 							if ( ! $gacwp->config->options['tableid_jail'] ) {
-								$profile = GACWP_Tools::guess_default_domain( $profiles );
+								$profile = GAINWP_Tools::guess_default_domain( $profiles );
 								$gacwp->config->options['tableid_jail'] = $profile;
 							}
 							$gacwp->config->set_plugin_options();
@@ -983,13 +983,13 @@ final class GACWP_Settings {
 					}
 				} catch ( Deconfc_IO_Exception $e ) {
 					$timeout = $gacwp->gapi_controller->get_timeouts( 'midnight' );
-					GACWP_Tools::set_error( $e, $timeout );
+					GAINWP_Tools::set_error( $e, $timeout );
 				} catch ( Deconfc_Service_Exception $e ) {
 					$timeout = $gacwp->gapi_controller->get_timeouts( 'midnight' );
-					GACWP_Tools::set_error( $e, $timeout );
+					GAINWP_Tools::set_error( $e, $timeout );
 				} catch ( Exception $e ) {
 					$timeout = $gacwp->gapi_controller->get_timeouts( 'midnight' );
-					GACWP_Tools::set_error( $e, $timeout );
+					GAINWP_Tools::set_error( $e, $timeout );
 					$gacwp->gapi_controller->reset_token();
 				}
 			} else {
@@ -1002,7 +1002,7 @@ final class GACWP_Settings {
 		}
 		if ( isset( $_POST['Clear'] ) ) {
 			if ( isset( $_POST['gacwp_security'] ) && wp_verify_nonce( $_POST['gacwp_security'], 'gacwp_form' ) ) {
-				GACWP_Tools::clear_cache();
+				GAINWP_Tools::clear_cache();
 				$message = "<div class='updated' id='gacwp-autodismiss'><p>" . __( "Cleared Cache.", 'google-analytics-connector-wp' ) . "</p></div>";
 			} else {
 				$message = "<div class='error' id='gacwp-autodismiss'><p>" . __( "Cheating Huh?", 'google-analytics-connector-wp' ) . "</p></div>";
@@ -1011,7 +1011,7 @@ final class GACWP_Settings {
 		if ( isset( $_POST['Reset'] ) ) {
 			if ( isset( $_POST['gacwp_security'] ) && wp_verify_nonce( $_POST['gacwp_security'], 'gacwp_form' ) ) {
 				$gacwp->gapi_controller->reset_token( TRUE );
-				GACWP_Tools::clear_cache();
+				GAINWP_Tools::clear_cache();
 
 				$message = "<div class='updated' id='gacwp-autodismiss'><p>" . __( "Token Reseted and Revoked.", 'google-analytics-connector-wp' ) . "</p></div>";
 				$options = self::update_options( 'Reset' );
@@ -1022,20 +1022,20 @@ final class GACWP_Settings {
 		if ( isset( $_POST['Reset_Err'] ) ) {
 			if ( isset( $_POST['gacwp_security'] ) && wp_verify_nonce( $_POST['gacwp_security'], 'gacwp_form' ) ) {
 
-				if ( GACWP_Tools::get_cache( 'gapi_errors' ) || GACWP_Tools::get_cache( 'last_error' ) ) {
+				if ( GAINWP_Tools::get_cache( 'gapi_errors' ) || GAINWP_Tools::get_cache( 'last_error' ) ) {
 
-					$info = GACWP_Tools::system_info();
-					$info .= 'GACWP Version: ' . GACWP_CURRENT_VERSION;
+					$info = GAINWP_Tools::system_info();
+					$info .= 'GAINWP Version: ' . GAINWP_CURRENT_VERSION;
 
 					$sep = "\n---------------------------\n";
-					$error_report = GACWP_Tools::get_cache( 'last_error' );
-					$error_report .= $sep . print_r( GACWP_Tools::get_cache( 'gapi_errors' ), true );
-					$error_report .= $sep . GACWP_Tools::get_cache( 'errors_count' );
+					$error_report = GAINWP_Tools::get_cache( 'last_error' );
+					$error_report .= $sep . print_r( GAINWP_Tools::get_cache( 'gapi_errors' ), true );
+					$error_report .= $sep . GAINWP_Tools::get_cache( 'errors_count' );
 					$error_report .= $sep . $info;
 
 					$error_report = urldecode( $error_report );
 
-					$url = GACWP_ENDPOINT_URL . 'gacwp-report.php';
+					$url = GAINWP_ENDPOINT_URL . 'gacwp-report.php';
 					/* @formatter:off */
 					$response = wp_remote_post( $url, array(
 							'method' => 'POST',
@@ -1051,8 +1051,8 @@ final class GACWP_Settings {
 				}
 
 				/* @formatter:on */
-				GACWP_Tools::delete_cache( 'last_error' );
-				GACWP_Tools::delete_cache( 'gapi_errors' );
+				GAINWP_Tools::delete_cache( 'last_error' );
+				GAINWP_Tools::delete_cache( 'gapi_errors' );
 				delete_option( 'gacwp_got_updated' );
 				$message = "<div class='updated' id='gacwp-autodismiss'><p>" . __( "All errors reseted.", 'google-analytics-connector-wp' ) . "</p></div>";
 			} else {
@@ -1068,7 +1068,7 @@ final class GACWP_Settings {
 		if ( isset( $_POST['Hide'] ) ) {
 			if ( isset( $_POST['gacwp_security'] ) && wp_verify_nonce( $_POST['gacwp_security'], 'gacwp_form' ) ) {
 				$message = "<div class='updated' id='gacwp-action'><p>" . __( "All other domains/properties were removed.", 'google-analytics-connector-wp' ) . "</p></div>";
-				$lock_profile = GACWP_Tools::get_selected_profile( $gacwp->config->options['ga_profiles_list'], $gacwp->config->options['tableid_jail'] );
+				$lock_profile = GAINWP_Tools::get_selected_profile( $gacwp->config->options['ga_profiles_list'], $gacwp->config->options['tableid_jail'] );
 				$gacwp->config->options['ga_profiles_list'] = array( $lock_profile );
 				$options = self::update_options( 'general' );
 			} else {
@@ -1109,11 +1109,11 @@ final class GACWP_Settings {
 							<div id="post-body-content">
 								<div class="settings-wrapper">
 									<div class="inside">
-										<?php if ( $gacwp->gapi_controller->gapi_errors_handler() || GACWP_Tools::get_cache( 'last_error' ) ) : ?>
+										<?php if ( $gacwp->gapi_controller->gapi_errors_handler() || GAINWP_Tools::get_cache( 'last_error' ) ) : ?>
 													<?php $message = sprintf( '<div class="error"><p>%s</p></div>', sprintf( __( 'Something went wrong, check %1$s or %2$s.', 'google-analytics-connector-wp' ), sprintf( '<a href="%1$s">%2$s</a>', menu_page_url( 'gacwp_errors_debugging', false ), __( 'Errors & Debug', 'google-analytics-connector-wp' ) ), sprintf( '<a href="%1$s">%2$s</a>', menu_page_url( 'gacwp_settings', false ), __( 'authorize the plugin', 'google-analytics-connector-wp' ) ) ) );?>
 										<?php endif;?>
 										<?php if ( isset( $_POST['Authorize'] ) ) : ?>
-											<?php GACWP_Tools::clear_cache(); ?>
+											<?php GAINWP_Tools::clear_cache(); ?>
 											<?php $gacwp->gapi_controller->token_request(); ?>
 											<div class="updated">
 											<p><?php _e( "Use the red link (see below) to generate and get your access code! You need to generate a new code each time you authorize!", 'google-analytics-connector-wp' )?></p>
@@ -1184,7 +1184,7 @@ final class GACWP_Settings {
                             <tr>
                               <td class="gacwp-settings-title"></td>
                               <td>
-                              <?php $profile_info = GACWP_Tools::get_selected_profile( $gacwp->config->options['ga_profiles_list'], $gacwp->config->options['tableid_jail'] ); ?>
+                              <?php $profile_info = GAINWP_Tools::get_selected_profile( $gacwp->config->options['ga_profiles_list'], $gacwp->config->options['tableid_jail'] ); ?>
                                 <pre><?php echo __( "View Name:", 'google-analytics-connector-wp' ) . "\t" . esc_html( $profile_info[0] ) . "<br />" . __( "Tracking ID:", 'google-analytics-connector-wp' ) . "\t" . esc_html( $profile_info[2] ) . "<br />" . __( "Default URL:", 'google-analytics-connector-wp' ) . "\t" . esc_html( $profile_info[3] ) . "<br />" . __( "Time Zone:", 'google-analytics-connector-wp' ) . "\t" . esc_html( $profile_info[5] );?></pre>
                               </td>
                             </tr>
@@ -1321,7 +1321,7 @@ final class GACWP_Settings {
 
 	// Network Settings
 	public static function general_settings_network() {
-		$gacwp = GACWP();
+		$gacwp = GAINWP();
 
 		if ( ! current_user_can( 'manage_network_options' ) ) {
 			return;
@@ -1333,7 +1333,7 @@ final class GACWP_Settings {
 		echo '<div id="gapi-warning" class="updated"><p>' . __( 'Loading the required libraries. If this results in a blank screen or a fatal error, try this solution:', 'google-analytics-connector-wp' ) . ' <a href="https://intelligencewp.com/google-analytics-connector-wordpress/?utm_source=gacwp_config&utm_medium=link&utm_content=general_screen&utm_campaign=gacwp">Library conflicts between WordPress plugins</a></p></div>';
 
 		if ( null === $gacwp->gapi_controller ) {
-			$gacwp->gapi_controller = new GACWP_GAPI_Controller();
+			$gacwp->gapi_controller = new GAINWP_GAPI_Controller();
 		}
 
 		echo '<script type="text/javascript">jQuery("#gapi-warning").hide()</script>';
@@ -1349,22 +1349,22 @@ final class GACWP_Settings {
 					$options = self::update_options( 'network' );
 					$message = "<div class='updated' id='gacwp-action'><p>" . __( "Plugin authorization succeeded.", 'google-analytics-connector-wp' ) . "</p></div>";
 					if ( is_multisite() ) { // Cleanup errors on the entire network
-						foreach ( GACWP_Tools::get_sites( array( 'number' => apply_filters( 'gacwp_sites_limit', 100 ) ) ) as $blog ) {
+						foreach ( GAINWP_Tools::get_sites( array( 'number' => apply_filters( 'gacwp_sites_limit', 100 ) ) ) as $blog ) {
 							switch_to_blog( $blog['blog_id'] );
-							GACWP_Tools::delete_cache( 'last_error' );
-							GACWP_Tools::delete_cache( 'gapi_errors' );
+							GAINWP_Tools::delete_cache( 'last_error' );
+							GAINWP_Tools::delete_cache( 'gapi_errors' );
 							restore_current_blog();
 						}
 					} else {
-						GACWP_Tools::delete_cache( 'last_error' );
-						GACWP_Tools::delete_cache( 'gapi_errors' );
+						GAINWP_Tools::delete_cache( 'last_error' );
+						GAINWP_Tools::delete_cache( 'gapi_errors' );
 					}
 					if ( $gacwp->config->options['token'] && $gacwp->gapi_controller->client->getAccessToken() ) {
 						$profiles = $gacwp->gapi_controller->refresh_profiles();
 						if ( is_array ( $profiles ) && ! empty( $profiles ) ) {
 							$gacwp->config->options['ga_profiles_list'] = $profiles;
 							if ( isset( $gacwp->config->options['tableid_jail'] ) && ! $gacwp->config->options['tableid_jail'] ) {
-								$profile = GACWP_Tools::guess_default_domain( $profiles );
+								$profile = GAINWP_Tools::guess_default_domain( $profiles );
 								$gacwp->config->options['tableid_jail'] = $profile;
 							}
 							$gacwp->config->set_plugin_options( true );
@@ -1373,13 +1373,13 @@ final class GACWP_Settings {
 					}
 				} catch ( Deconfc_IO_Exception $e ) {
 					$timeout = $gacwp->gapi_controller->get_timeouts( 'midnight' );
-					GACWP_Tools::set_error( $e, $timeout );
+					GAINWP_Tools::set_error( $e, $timeout );
 				} catch ( Deconfc_Service_Exception $e ) {
 					$timeout = $gacwp->gapi_controller->get_timeouts( 'midnight' );
-					GACWP_Tools::set_error( $e, $timeout );
+					GAINWP_Tools::set_error( $e, $timeout );
 				} catch ( Exception $e ) {
 					$timeout = $gacwp->gapi_controller->get_timeouts( 'midnight' );
-					GACWP_Tools::set_error( $e, $timeout );
+					GAINWP_Tools::set_error( $e, $timeout );
 					$gacwp->gapi_controller->reset_token();
 				}
 			} else {
@@ -1404,7 +1404,7 @@ final class GACWP_Settings {
 					if ( $profiles ) {
 						$gacwp->config->options['ga_profiles_list'] = $profiles;
 						if ( isset( $gacwp->config->options['tableid_jail'] ) && ! $gacwp->config->options['tableid_jail'] ) {
-							$profile = GACWP_Tools::guess_default_domain( $profiles );
+							$profile = GAINWP_Tools::guess_default_domain( $profiles );
 							$gacwp->config->options['tableid_jail'] = $profile;
 						}
 						$gacwp->config->set_plugin_options( true );
@@ -1417,7 +1417,7 @@ final class GACWP_Settings {
 		}
 		if ( isset( $_POST['Clear'] ) ) {
 			if ( isset( $_POST['gacwp_security'] ) && wp_verify_nonce( $_POST['gacwp_security'], 'gacwp_form' ) ) {
-				GACWP_Tools::clear_cache();
+				GAINWP_Tools::clear_cache();
 				$message = "<div class='updated' id='gacwp-autodismiss'><p>" . __( "Cleared Cache.", 'google-analytics-connector-wp' ) . "</p></div>";
 			} else {
 				$message = "<div class='error' id='gacwp-autodismiss'><p>" . __( "Cheating Huh?", 'google-analytics-connector-wp' ) . "</p></div>";
@@ -1426,7 +1426,7 @@ final class GACWP_Settings {
 		if ( isset( $_POST['Reset'] ) ) {
 			if ( isset( $_POST['gacwp_security'] ) && wp_verify_nonce( $_POST['gacwp_security'], 'gacwp_form' ) ) {
 				$gacwp->gapi_controller->reset_token();
-				GACWP_Tools::clear_cache();
+				GAINWP_Tools::clear_cache();
 				$message = "<div class='updated' id='gacwp-autodismiss'><p>" . __( "Token Reseted and Revoked.", 'google-analytics-connector-wp' ) . "</p></div>";
 				$options = self::update_options( 'Reset' );
 			} else {
@@ -1442,7 +1442,7 @@ final class GACWP_Settings {
 		if ( isset( $_POST['Hide'] ) ) {
 			if ( isset( $_POST['gacwp_security'] ) && wp_verify_nonce( $_POST['gacwp_security'], 'gacwp_form' ) ) {
 				$message = "<div class='updated' id='gacwp-autodismiss'><p>" . __( "All other domains/properties were removed.", 'google-analytics-connector-wp' ) . "</p></div>";
-				$lock_profile = GACWP_Tools::get_selected_profile( $gacwp->config->options['ga_profiles_list'], $gacwp->config->options['tableid_jail'] );
+				$lock_profile = GAINWP_Tools::get_selected_profile( $gacwp->config->options['ga_profiles_list'], $gacwp->config->options['tableid_jail'] );
 				$gacwp->config->options['ga_profiles_list'] = array( $lock_profile );
 				$options = self::update_options( 'network' );
 			} else {
@@ -1459,11 +1459,11 @@ final class GACWP_Settings {
 												<div id="post-body-content">
 													<div class="settings-wrapper">
 														<div class="inside">
-					<?php if ( $gacwp->gapi_controller->gapi_errors_handler() || GACWP_Tools::get_cache( 'last_error' ) ) : ?>
+					<?php if ( $gacwp->gapi_controller->gapi_errors_handler() || GAINWP_Tools::get_cache( 'last_error' ) ) : ?>
 						<?php $message = sprintf( '<div class="error"><p>%s</p></div>', sprintf( __( 'Something went wrong, check %1$s or %2$s.', 'google-analytics-connector-wp' ), sprintf( '<a href="%1$s">%2$s</a>', menu_page_url( 'gacwp_errors_debugging', false ), __( 'Errors & Debug', 'google-analytics-connector-wp' ) ), sprintf( '<a href="%1$s">%2$s</a>', menu_page_url( 'gacwp_settings', false ), __( 'authorize the plugin', 'google-analytics-connector-wp' ) ) ) );?>
 					<?php endif; ?>
 					<?php if ( isset( $_POST['Authorize'] ) ) : ?>
-						<?php GACWP_Tools::clear_cache();?>
+						<?php GAINWP_Tools::clear_cache();?>
 						<?php $gacwp->gapi_controller->token_request();?>
 					<div class="updated">
 																<p><?php _e( "Use the red link (see below) to generate and get your access code! You need to generate a new code each time you authorize!", 'google-analytics-connector-wp' );?></p>
@@ -1559,7 +1559,7 @@ final class GACWP_Settings {
 							<?php if ( isset( $options['network_tableid'] ) ) : ?>
 								<?php $options['network_tableid'] = json_decode( json_encode( $options['network_tableid'] ), false ); ?>
 							  <?php endif; ?>
-							  <?php foreach ( GACWP_Tools::get_sites( array( 'number' => apply_filters( 'gacwp_sites_limit', 100 ) ) ) as $blog ) : ?>
+							  <?php foreach ( GAINWP_Tools::get_sites( array( 'number' => apply_filters( 'gacwp_sites_limit', 100 ) ) ) as $blog ) : ?>
 							    <tr>
                     <td class="gacwp-settings-title-s">
                       <label for="network_tableid"><?php echo '<strong>'.$blog['domain'].$blog['path'].'</strong>: ';?></label>
@@ -1571,7 +1571,7 @@ final class GACWP_Settings {
                             <?php if ( $items[3] ) : ?>
                               <?php $temp_id = $blog['blog_id']; ?>
                               <option value="<?php echo esc_attr( $items[1] );?>" <?php selected( $items[1], isset( $options['network_tableid']->$temp_id ) ? $options['network_tableid']->$temp_id : '');?> title="<?php echo __( "View Name:", 'google-analytics-connector-wp' ) . ' ' . esc_attr( $items[0] );?>">
-                                 <?php echo esc_html( GACWP_Tools::strip_protocol( $items[3] ) );?> &#8658; <?php echo esc_attr( $items[0] );?>
+                                 <?php echo esc_html( GAINWP_Tools::strip_protocol( $items[3] ) );?> &#8658; <?php echo esc_attr( $items[0] );?>
                               </option>
                             <?php endif; ?>
                           <?php endforeach; ?>
@@ -1660,7 +1660,7 @@ final class GACWP_Settings {
 	}
 
 	public static function reporting_settings() {
-		$gacwp = GACWP();
+		$gacwp = GAINWP();
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
@@ -1888,7 +1888,7 @@ final class GACWP_Settings {
 	public static function output_sidebar() {
 		global $wp_version;
 
-		$gacwp = GACWP();
+		$gacwp = GAINWP();
 		?>
 		    </div>
       </div>
