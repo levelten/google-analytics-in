@@ -113,7 +113,7 @@ This plugin is fully compatible with multisite network installs, allowing three 
 - Mode 3: network deactivated using multiple Google Analytics accounts
 
 > <strong>Google Analytics Connector for WP on GitHub</strong><br>
-> You can submit feature requests or bugs on [Google Analytics Connector for WordPress](https://github.com/levelten/google-analytics-connector-wp) repository.
+> You can submit feature requests or bugs on [Google Analytics Connector for WordPress](https://github.com/levelten/google-analytics-in-wp) repository.
 
 == Why this Plugin ==
 
@@ -129,7 +129,7 @@ This plugin was originally created by [Alin Marcu](https://deconf.com) as the Go
 
 == Installation ==
 
-1. Upload the full google-analytics-connector-wp directory into your wp-content/plugins directory.
+1. Upload the full google-analytics-in-wp directory into your wp-content/plugins directory.
 2. In WordPress select Plugins from your sidebar menu and activate the Google Analytics Connector for WP plugin.
 3. Open the plugin configuration page, which is located under Google Analytics menu.
 4. Authorize the plugin to connect to Google Analytics using the Authorize Plugin button.
@@ -148,7 +148,7 @@ We are constantly improving Google Analytics Connector for WP, sometimes the vid
 
 = How can I suggest a new feature, contribute or report a bug? =
 
-You can submit pull requests, feature requests and bug reports on [our GitHub repository](https://github.com/levelten/google-analytics-connector-wp).
+You can submit pull requests, feature requests and bug reports on [our GitHub repository](https://github.com/levelten/google-analytics-in-wp).
 
 = Documentation, Tutorials and FAQ =
 
@@ -158,7 +158,7 @@ For documentation, tutorials, FAQ and videos check out: [Google Analytics Connec
 
 == Localization ==
 
-You can translate Google Analytics Connector for WP on [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/google-analytics-connector-wp).
+You can translate Google Analytics Connector for WP on [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/google-analytics-in-wp).
 
 == License ==
 

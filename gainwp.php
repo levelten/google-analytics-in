@@ -6,7 +6,7 @@
  * Author: LevelTen
  * Version: 5.4.0
  * Author URI: https://getlevelten.com
- * Text Domain: google-analytics-connector-wp
+ * Text Domain: google-analytics-in-wp
  * Domain Path: /languages
  *
  * This plugin was originally created by Alin Marcu (https://deconf.com).
@@ -59,7 +59,7 @@ if ( ! class_exists( 'GAINWP_Manager' ) ) {
 		 */
 		private function __construct() {
 			if ( null !== self::$instance ) {
-				_doing_it_wrong( __FUNCTION__, __( "This is not allowed, read the documentation!", 'google-analytics-connector-wp' ), '4.6' );
+				_doing_it_wrong( __FUNCTION__, __( "This is not allowed, read the documentation!", 'google-analytics-in-wp' ), '4.6' );
 			}
 		}
 
@@ -67,14 +67,14 @@ if ( ! class_exists( 'GAINWP_Manager' ) ) {
 		 * Clone warning
 		 */
 		private function __clone() {
-			_doing_it_wrong( __FUNCTION__, __( "This is not allowed, read the documentation!", 'google-analytics-connector-wp' ), '4.6' );
+			_doing_it_wrong( __FUNCTION__, __( "This is not allowed, read the documentation!", 'google-analytics-in-wp' ), '4.6' );
 		}
 
 		/**
 		 * Wakeup warning
 		 */
 		private function __wakeup() {
-			_doing_it_wrong( __FUNCTION__, __( "This is not allowed, read the documentation!", 'google-analytics-connector-wp' ), '4.6' );
+			_doing_it_wrong( __FUNCTION__, __( "This is not allowed, read the documentation!", 'google-analytics-in-wp' ), '4.6' );
 		}
 
 		/**
@@ -165,7 +165,7 @@ if ( ! class_exists( 'GAINWP_Manager' ) ) {
 		 * Load i18n
 		 */
 		public function load_i18n() {
-			load_plugin_textdomain( 'google-analytics-connector-wp', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+			load_plugin_textdomain( 'google-analytics-in-wp', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 		}
 
 		/**

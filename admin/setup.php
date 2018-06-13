@@ -37,17 +37,17 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 			global $wp_version;
 			if ( current_user_can( 'manage_options' ) ) {
 				include ( GAINWP_DIR . 'admin/settings.php' );
-				add_menu_page( __( "Google Analytics", 'google-analytics-connector-wp' ), __( "Google Analytics", 'google-analytics-connector-wp' ), 'manage_options', 'gacwp_settings', array( 'GAINWP_Settings', 'general_settings' ), version_compare( $wp_version, '3.8.0', '>=' ) ? 'dashicons-chart-area' : GAINWP_URL . 'admin/images/gacwp-icon.png' );
-				add_submenu_page( 'gacwp_settings', __( "General Settings", 'google-analytics-connector-wp' ), __( "General Settings", 'google-analytics-connector-wp' ), 'manage_options', 'gacwp_settings', array( 'GAINWP_Settings', 'general_settings' ) );
-				add_submenu_page( 'gacwp_settings', __( "Tracking Settings", 'google-analytics-connector-wp' ), __( "Tracking Settings", 'google-analytics-connector-wp' ), 'manage_options', 'gacwp_tracking_settings', array( 'GAINWP_Settings', 'tracking_settings' ) );
-				add_submenu_page( 'gacwp_settings', __( "Reporting Settings", 'google-analytics-connector-wp' ), __( "Reporting Settings", 'google-analytics-connector-wp' ), 'manage_options', 'gacwp_report_settings', array( 'GAINWP_Settings', 'reporting_settings' ) );
-				add_submenu_page( 'gacwp_settings', __( "Errors & Debug", 'google-analytics-connector-wp' ), __( "Errors & Debug", 'google-analytics-connector-wp' ), 'manage_options', 'gacwp_errors_debugging', array( 'GAINWP_Settings', 'errors_debugging' ) );
+				add_menu_page( __( "Google Analytics", 'google-analytics-in-wp' ), __( "Google Analytics", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_settings', array( 'GAINWP_Settings', 'general_settings' ), version_compare( $wp_version, '3.8.0', '>=' ) ? 'dashicons-chart-area' : GAINWP_URL . 'admin/images/gacwp-icon.png' );
+				add_submenu_page( 'gacwp_settings', __( "General Settings", 'google-analytics-in-wp' ), __( "General Settings", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_settings', array( 'GAINWP_Settings', 'general_settings' ) );
+				add_submenu_page( 'gacwp_settings', __( "Tracking Settings", 'google-analytics-in-wp' ), __( "Tracking Settings", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_tracking_settings', array( 'GAINWP_Settings', 'tracking_settings' ) );
+				add_submenu_page( 'gacwp_settings', __( "Reporting Settings", 'google-analytics-in-wp' ), __( "Reporting Settings", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_report_settings', array( 'GAINWP_Settings', 'reporting_settings' ) );
+				add_submenu_page( 'gacwp_settings', __( "Errors & Debug", 'google-analytics-in-wp' ), __( "Errors & Debug", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_errors_debugging', array( 'GAINWP_Settings', 'errors_debugging' ) );
 				/*
-				add_submenu_page( 'gacwp_settings', __( "General Settings", 'google-analytics-connector-wp' ), __( "General Settings", 'google-analytics-connector-wp' ), 'manage_options', 'gacwp_settings', array( 'GAINWP_Settings', 'general_settings' ) );
-				add_submenu_page( 'gacwp_settings', __( "Backend Settings", 'google-analytics-connector-wp' ), __( "Backend Settings", 'google-analytics-connector-wp' ), 'manage_options', 'gacwp_backend_settings', array( 'GAINWP_Settings', 'backend_settings' ) );
-				add_submenu_page( 'gacwp_settings', __( "Frontend Settings", 'google-analytics-connector-wp' ), __( "Frontend Settings", 'google-analytics-connector-wp' ), 'manage_options', 'gacwp_frontend_settings', array( 'GAINWP_Settings', 'frontend_settings' ) );
-				add_submenu_page( 'gacwp_settings', __( "Tracking Settings", 'google-analytics-connector-wp' ), __( "Tracking Code", 'google-analytics-connector-wp' ), 'manage_options', 'gacwp_tracking_settings', array( 'GAINWP_Settings', 'tracking_settings' ) );
-				add_submenu_page( 'gacwp_settings', __( "Errors & Debug", 'google-analytics-connector-wp' ), __( "Errors & Debug", 'google-analytics-connector-wp' ), 'manage_options', 'gacwp_errors_debugging', array( 'GAINWP_Settings', 'errors_debugging' ) );
+				add_submenu_page( 'gacwp_settings', __( "General Settings", 'google-analytics-in-wp' ), __( "General Settings", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_settings', array( 'GAINWP_Settings', 'general_settings' ) );
+				add_submenu_page( 'gacwp_settings', __( "Backend Settings", 'google-analytics-in-wp' ), __( "Backend Settings", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_backend_settings', array( 'GAINWP_Settings', 'backend_settings' ) );
+				add_submenu_page( 'gacwp_settings', __( "Frontend Settings", 'google-analytics-in-wp' ), __( "Frontend Settings", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_frontend_settings', array( 'GAINWP_Settings', 'frontend_settings' ) );
+				add_submenu_page( 'gacwp_settings', __( "Tracking Settings", 'google-analytics-in-wp' ), __( "Tracking Code", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_tracking_settings', array( 'GAINWP_Settings', 'tracking_settings' ) );
+				add_submenu_page( 'gacwp_settings', __( "Errors & Debug", 'google-analytics-in-wp' ), __( "Errors & Debug", 'google-analytics-in-wp' ), 'manage_options', 'gacwp_errors_debugging', array( 'GAINWP_Settings', 'errors_debugging' ) );
 				*/
 			}
 		}
@@ -59,9 +59,9 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 			global $wp_version;
 			if ( current_user_can( 'manage_network' ) ) {
 				include ( GAINWP_DIR . 'admin/settings.php' );
-				add_menu_page( __( "Google Analytics", 'google-analytics-connector-wp' ), "Google Analytics", 'manage_network', 'gacwp_settings', array( 'GAINWP_Settings', 'general_settings_network' ), version_compare( $wp_version, '3.8.0', '>=' ) ? 'dashicons-chart-area' : GAINWP_URL . 'admin/images/gacwp-icon.png' );
-				add_submenu_page( 'gacwp_settings', __( "General Settings", 'google-analytics-connector-wp' ), __( "General Settings", 'google-analytics-connector-wp' ), 'manage_network', 'gacwp_settings', array( 'GAINWP_Settings', 'general_settings_network' ) );
-				add_submenu_page( 'gacwp_settings', __( "Errors & Debug", 'google-analytics-connector-wp' ), __( "Errors & Debug", 'google-analytics-connector-wp' ), 'manage_network', 'gacwp_errors_debugging', array( 'GAINWP_Settings', 'errors_debugging' ) );
+				add_menu_page( __( "Google Analytics", 'google-analytics-in-wp' ), "Google Analytics", 'manage_network', 'gacwp_settings', array( 'GAINWP_Settings', 'general_settings_network' ), version_compare( $wp_version, '3.8.0', '>=' ) ? 'dashicons-chart-area' : GAINWP_URL . 'admin/images/gacwp-icon.png' );
+				add_submenu_page( 'gacwp_settings', __( "General Settings", 'google-analytics-in-wp' ), __( "General Settings", 'google-analytics-in-wp' ), 'manage_network', 'gacwp_settings', array( 'GAINWP_Settings', 'general_settings_network' ) );
+				add_submenu_page( 'gacwp_settings', __( "Errors & Debug", 'google-analytics-in-wp' ), __( "Errors & Debug", 'google-analytics-in-wp' ), 'manage_network', 'gacwp_errors_debugging', array( 'GAINWP_Settings', 'errors_debugging' ) );
 			}
 		}
 
@@ -155,15 +155,15 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 					/* @formatter:off */
 
 					$datelist = array(
-						'realtime' => __( "Real-Time", 'google-analytics-connector-wp' ),
-						'today' => __( "Today", 'google-analytics-connector-wp' ),
-						'yesterday' => __( "Yesterday", 'google-analytics-connector-wp' ),
-						'7daysAgo' => sprintf( __( "Last %d Days", 'google-analytics-connector-wp' ), 7 ),
-						'14daysAgo' => sprintf( __( "Last %d Days", 'google-analytics-connector-wp' ), 14 ),
-						'30daysAgo' => sprintf( __( "Last %d Days", 'google-analytics-connector-wp' ), 30 ),
-						'90daysAgo' => sprintf( __( "Last %d Days", 'google-analytics-connector-wp' ), 90 ),
-						'365daysAgo' =>  sprintf( _n( "%s Year", "%s Years", 1, 'google-analytics-connector-wp' ), __('One', 'google-analytics-connector-wp') ),
-						'1095daysAgo' =>  sprintf( _n( "%s Year", "%s Years", 3, 'google-analytics-connector-wp' ), __('Three', 'google-analytics-connector-wp') ),
+						'realtime' => __( "Real-Time", 'google-analytics-in-wp' ),
+						'today' => __( "Today", 'google-analytics-in-wp' ),
+						'yesterday' => __( "Yesterday", 'google-analytics-in-wp' ),
+						'7daysAgo' => sprintf( __( "Last %d Days", 'google-analytics-in-wp' ), 7 ),
+						'14daysAgo' => sprintf( __( "Last %d Days", 'google-analytics-in-wp' ), 14 ),
+						'30daysAgo' => sprintf( __( "Last %d Days", 'google-analytics-in-wp' ), 30 ),
+						'90daysAgo' => sprintf( __( "Last %d Days", 'google-analytics-in-wp' ), 90 ),
+						'365daysAgo' =>  sprintf( _n( "%s Year", "%s Years", 1, 'google-analytics-in-wp' ), __('One', 'google-analytics-in-wp') ),
+						'1095daysAgo' =>  sprintf( _n( "%s Year", "%s Years", 3, 'google-analytics-in-wp' ), __('Three', 'google-analytics-in-wp') ),
 					);
 
 
@@ -176,49 +176,49 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 						'security' => wp_create_nonce( 'gacwp_backend_item_reports' ),
 						'dateList' => $datelist,
 						'reportList' => array(
-							'sessions' => __( "Sessions", 'google-analytics-connector-wp' ),
-							'users' => __( "Users", 'google-analytics-connector-wp' ),
-							'organicSearches' => __( "Organic", 'google-analytics-connector-wp' ),
-							'pageviews' => __( "Page Views", 'google-analytics-connector-wp' ),
-							'visitBounceRate' => __( "Bounce Rate", 'google-analytics-connector-wp' ),
-							'locations' => __( "Location", 'google-analytics-connector-wp' ),
-							'contentpages' =>  __( "Pages", 'google-analytics-connector-wp' ),
-							'referrers' => __( "Referrers", 'google-analytics-connector-wp' ),
-							'searches' => __( "Searches", 'google-analytics-connector-wp' ),
-							'trafficdetails' => __( "Traffic", 'google-analytics-connector-wp' ),
-							'technologydetails' => __( "Technology", 'google-analytics-connector-wp' ),
-							'404errors' => __( "404 Errors", 'google-analytics-connector-wp' ),
+							'sessions' => __( "Sessions", 'google-analytics-in-wp' ),
+							'users' => __( "Users", 'google-analytics-in-wp' ),
+							'organicSearches' => __( "Organic", 'google-analytics-in-wp' ),
+							'pageviews' => __( "Page Views", 'google-analytics-in-wp' ),
+							'visitBounceRate' => __( "Bounce Rate", 'google-analytics-in-wp' ),
+							'locations' => __( "Location", 'google-analytics-in-wp' ),
+							'contentpages' =>  __( "Pages", 'google-analytics-in-wp' ),
+							'referrers' => __( "Referrers", 'google-analytics-in-wp' ),
+							'searches' => __( "Searches", 'google-analytics-in-wp' ),
+							'trafficdetails' => __( "Traffic", 'google-analytics-in-wp' ),
+							'technologydetails' => __( "Technology", 'google-analytics-in-wp' ),
+							'404errors' => __( "404 Errors", 'google-analytics-in-wp' ),
 						),
 						'i18n' => array(
-							__( "A JavaScript Error is blocking plugin resources!", 'google-analytics-connector-wp' ), //0
-							__( "Traffic Mediums", 'google-analytics-connector-wp' ),
-							__( "Visitor Type", 'google-analytics-connector-wp' ),
-							__( "Search Engines", 'google-analytics-connector-wp' ),
-							__( "Social Networks", 'google-analytics-connector-wp' ),
-							__( "Sessions", 'google-analytics-connector-wp' ),
-							__( "Users", 'google-analytics-connector-wp' ),
-							__( "Page Views", 'google-analytics-connector-wp' ),
-							__( "Bounce Rate", 'google-analytics-connector-wp' ),
-							__( "Organic Search", 'google-analytics-connector-wp' ),
-							__( "Pages/Session", 'google-analytics-connector-wp' ),
-							__( "Invalid response", 'google-analytics-connector-wp' ),
-							__( "No Data", 'google-analytics-connector-wp' ),
-							__( "This report is unavailable", 'google-analytics-connector-wp' ),
-							__( "report generated by", 'google-analytics-connector-wp' ), //14
-							__( "This plugin needs an authorization:", 'google-analytics-connector-wp' ) . ' <a href="' . menu_page_url( 'gacwp_settings', false ) . '">' . __( "authorize the plugin", 'google-analytics-connector-wp' ) . '</a>.',
-							__( "Browser", 'google-analytics-connector-wp' ), //16
-							__( "Operating System", 'google-analytics-connector-wp' ),
-							__( "Screen Resolution", 'google-analytics-connector-wp' ),
-							__( "Mobile Brand", 'google-analytics-connector-wp' ),
-							__( "REFERRALS", 'google-analytics-connector-wp' ), //20
-							__( "KEYWORDS", 'google-analytics-connector-wp' ),
-							__( "SOCIAL", 'google-analytics-connector-wp' ),
-							__( "CAMPAIGN", 'google-analytics-connector-wp' ),
-							__( "DIRECT", 'google-analytics-connector-wp' ),
-							__( "NEW", 'google-analytics-connector-wp' ), //25
-							__( "Time on Page", 'google-analytics-connector-wp' ),
-							__( "Page Load Time", 'google-analytics-connector-wp' ),
-							__( "Session Duration", 'google-analytics-connector-wp' ),
+							__( "A JavaScript Error is blocking plugin resources!", 'google-analytics-in-wp' ), //0
+							__( "Traffic Mediums", 'google-analytics-in-wp' ),
+							__( "Visitor Type", 'google-analytics-in-wp' ),
+							__( "Search Engines", 'google-analytics-in-wp' ),
+							__( "Social Networks", 'google-analytics-in-wp' ),
+							__( "Sessions", 'google-analytics-in-wp' ),
+							__( "Users", 'google-analytics-in-wp' ),
+							__( "Page Views", 'google-analytics-in-wp' ),
+							__( "Bounce Rate", 'google-analytics-in-wp' ),
+							__( "Organic Search", 'google-analytics-in-wp' ),
+							__( "Pages/Session", 'google-analytics-in-wp' ),
+							__( "Invalid response", 'google-analytics-in-wp' ),
+							__( "No Data", 'google-analytics-in-wp' ),
+							__( "This report is unavailable", 'google-analytics-in-wp' ),
+							__( "report generated by", 'google-analytics-in-wp' ), //14
+							__( "This plugin needs an authorization:", 'google-analytics-in-wp' ) . ' <a href="' . menu_page_url( 'gacwp_settings', false ) . '">' . __( "authorize the plugin", 'google-analytics-in-wp' ) . '</a>.',
+							__( "Browser", 'google-analytics-in-wp' ), //16
+							__( "Operating System", 'google-analytics-in-wp' ),
+							__( "Screen Resolution", 'google-analytics-in-wp' ),
+							__( "Mobile Brand", 'google-analytics-in-wp' ),
+							__( "REFERRALS", 'google-analytics-in-wp' ), //20
+							__( "KEYWORDS", 'google-analytics-in-wp' ),
+							__( "SOCIAL", 'google-analytics-in-wp' ),
+							__( "CAMPAIGN", 'google-analytics-in-wp' ),
+							__( "DIRECT", 'google-analytics-in-wp' ),
+							__( "NEW", 'google-analytics-in-wp' ), //25
+							__( "Time on Page", 'google-analytics-in-wp' ),
+							__( "Page Load Time", 'google-analytics-in-wp' ),
+							__( "Session Duration", 'google-analytics-in-wp' ),
 						),
 						'rtLimitPages' => $this->gacwp->config->options['ga_realtime_pages'],
 						'colorVariations' => GAINWP_Tools::variations( $this->gacwp->config->options['theme_color'] ),
@@ -269,57 +269,57 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 						'ajaxurl' => admin_url( 'admin-ajax.php' ),
 						'security' => wp_create_nonce( 'gacwp_backend_item_reports' ),
 						'dateList' => array(
-							'today' => __( "Today", 'google-analytics-connector-wp' ),
-							'yesterday' => __( "Yesterday", 'google-analytics-connector-wp' ),
-							'7daysAgo' => sprintf( __( "Last %d Days", 'google-analytics-connector-wp' ), 7 ),
-							'14daysAgo' => sprintf( __( "Last %d Days", 'google-analytics-connector-wp' ), 14 ),
-							'30daysAgo' => sprintf( __( "Last %d Days", 'google-analytics-connector-wp' ), 30 ),
-							'90daysAgo' => sprintf( __( "Last %d Days", 'google-analytics-connector-wp' ), 90 ),
-							'365daysAgo' =>  sprintf( _n( "%s Year", "%s Years", 1, 'google-analytics-connector-wp' ), __('One', 'google-analytics-connector-wp') ),
-							'1095daysAgo' =>  sprintf( _n( "%s Year", "%s Years", 3, 'google-analytics-connector-wp' ), __('Three', 'google-analytics-connector-wp') ),
+							'today' => __( "Today", 'google-analytics-in-wp' ),
+							'yesterday' => __( "Yesterday", 'google-analytics-in-wp' ),
+							'7daysAgo' => sprintf( __( "Last %d Days", 'google-analytics-in-wp' ), 7 ),
+							'14daysAgo' => sprintf( __( "Last %d Days", 'google-analytics-in-wp' ), 14 ),
+							'30daysAgo' => sprintf( __( "Last %d Days", 'google-analytics-in-wp' ), 30 ),
+							'90daysAgo' => sprintf( __( "Last %d Days", 'google-analytics-in-wp' ), 90 ),
+							'365daysAgo' =>  sprintf( _n( "%s Year", "%s Years", 1, 'google-analytics-in-wp' ), __('One', 'google-analytics-in-wp') ),
+							'1095daysAgo' =>  sprintf( _n( "%s Year", "%s Years", 3, 'google-analytics-in-wp' ), __('Three', 'google-analytics-in-wp') ),
 						),
 						'reportList' => array(
-							'uniquePageviews' => __( "Unique Views", 'google-analytics-connector-wp' ),
-							'users' => __( "Users", 'google-analytics-connector-wp' ),
-							'organicSearches' => __( "Organic", 'google-analytics-connector-wp' ),
-							'pageviews' => __( "Page Views", 'google-analytics-connector-wp' ),
-							'visitBounceRate' => __( "Bounce Rate", 'google-analytics-connector-wp' ),
-							'locations' => __( "Location", 'google-analytics-connector-wp' ),
-							'referrers' => __( "Referrers", 'google-analytics-connector-wp' ),
-							'searches' => __( "Searches", 'google-analytics-connector-wp' ),
-							'trafficdetails' => __( "Traffic", 'google-analytics-connector-wp' ),
-							'technologydetails' => __( "Technology", 'google-analytics-connector-wp' ),
+							'uniquePageviews' => __( "Unique Views", 'google-analytics-in-wp' ),
+							'users' => __( "Users", 'google-analytics-in-wp' ),
+							'organicSearches' => __( "Organic", 'google-analytics-in-wp' ),
+							'pageviews' => __( "Page Views", 'google-analytics-in-wp' ),
+							'visitBounceRate' => __( "Bounce Rate", 'google-analytics-in-wp' ),
+							'locations' => __( "Location", 'google-analytics-in-wp' ),
+							'referrers' => __( "Referrers", 'google-analytics-in-wp' ),
+							'searches' => __( "Searches", 'google-analytics-in-wp' ),
+							'trafficdetails' => __( "Traffic", 'google-analytics-in-wp' ),
+							'technologydetails' => __( "Technology", 'google-analytics-in-wp' ),
 						),
 						'i18n' => array(
-							__( "A JavaScript Error is blocking plugin resources!", 'google-analytics-connector-wp' ), //0
-							__( "Traffic Mediums", 'google-analytics-connector-wp' ),
-							__( "Visitor Type", 'google-analytics-connector-wp' ),
-							__( "Social Networks", 'google-analytics-connector-wp' ),
-							__( "Search Engines", 'google-analytics-connector-wp' ),
-							__( "Unique Views", 'google-analytics-connector-wp' ),
-							__( "Users", 'google-analytics-connector-wp' ),
-							__( "Page Views", 'google-analytics-connector-wp' ),
-							__( "Bounce Rate", 'google-analytics-connector-wp' ),
-							__( "Organic Search", 'google-analytics-connector-wp' ),
-							__( "Pages/Session", 'google-analytics-connector-wp' ),
-							__( "Invalid response", 'google-analytics-connector-wp' ),
-							__( "No Data", 'google-analytics-connector-wp' ),
-							__( "This report is unavailable", 'google-analytics-connector-wp' ),
-							__( "report generated by", 'google-analytics-connector-wp' ), //14
-							__( "This plugin needs an authorization:", 'google-analytics-connector-wp' ) . ' <a href="' . menu_page_url( 'gacwp_settings', false ) . '">' . __( "authorize the plugin", 'google-analytics-connector-wp' ) . '</a>.',
-							__( "Browser", 'google-analytics-connector-wp' ), //16
-							__( "Operating System", 'google-analytics-connector-wp' ),
-							__( "Screen Resolution", 'google-analytics-connector-wp' ),
-							__( "Mobile Brand", 'google-analytics-connector-wp' ), //19
-							__( "Future Use", 'google-analytics-connector-wp' ),
-							__( "Future Use", 'google-analytics-connector-wp' ),
-							__( "Future Use", 'google-analytics-connector-wp' ),
-							__( "Future Use", 'google-analytics-connector-wp' ),
-							__( "Future Use", 'google-analytics-connector-wp' ),
-							__( "Future Use", 'google-analytics-connector-wp' ), //25
-							__( "Time on Page", 'google-analytics-connector-wp' ),
-							__( "Page Load Time", 'google-analytics-connector-wp' ),
-							__( "Exit Rate", 'google-analytics-connector-wp' ),
+							__( "A JavaScript Error is blocking plugin resources!", 'google-analytics-in-wp' ), //0
+							__( "Traffic Mediums", 'google-analytics-in-wp' ),
+							__( "Visitor Type", 'google-analytics-in-wp' ),
+							__( "Social Networks", 'google-analytics-in-wp' ),
+							__( "Search Engines", 'google-analytics-in-wp' ),
+							__( "Unique Views", 'google-analytics-in-wp' ),
+							__( "Users", 'google-analytics-in-wp' ),
+							__( "Page Views", 'google-analytics-in-wp' ),
+							__( "Bounce Rate", 'google-analytics-in-wp' ),
+							__( "Organic Search", 'google-analytics-in-wp' ),
+							__( "Pages/Session", 'google-analytics-in-wp' ),
+							__( "Invalid response", 'google-analytics-in-wp' ),
+							__( "No Data", 'google-analytics-in-wp' ),
+							__( "This report is unavailable", 'google-analytics-in-wp' ),
+							__( "report generated by", 'google-analytics-in-wp' ), //14
+							__( "This plugin needs an authorization:", 'google-analytics-in-wp' ) . ' <a href="' . menu_page_url( 'gacwp_settings', false ) . '">' . __( "authorize the plugin", 'google-analytics-in-wp' ) . '</a>.',
+							__( "Browser", 'google-analytics-in-wp' ), //16
+							__( "Operating System", 'google-analytics-in-wp' ),
+							__( "Screen Resolution", 'google-analytics-in-wp' ),
+							__( "Mobile Brand", 'google-analytics-in-wp' ), //19
+							__( "Future Use", 'google-analytics-in-wp' ),
+							__( "Future Use", 'google-analytics-in-wp' ),
+							__( "Future Use", 'google-analytics-in-wp' ),
+							__( "Future Use", 'google-analytics-in-wp' ),
+							__( "Future Use", 'google-analytics-in-wp' ),
+							__( "Future Use", 'google-analytics-in-wp' ), //25
+							__( "Time on Page", 'google-analytics-in-wp' ),
+							__( "Page Load Time", 'google-analytics-in-wp' ),
+							__( "Exit Rate", 'google-analytics-in-wp' ),
 						),
 						'colorVariations' => GAINWP_Tools::variations( $this->gacwp->config->options['theme_color'] ),
 						'region' => $region,
@@ -354,7 +354,7 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 		 * @return array
 		 */
 		public function settings_link( $links ) {
-			$settings_link = '<a href="' . esc_url( get_admin_url( null, 'admin.php?page=gacwp_settings' ) ) . '">' . __( "Settings", 'google-analytics-connector-wp' ) . '</a>';
+			$settings_link = '<a href="' . esc_url( get_admin_url( null, 'admin.php?page=gacwp_settings' ) ) . '">' . __( "Settings", 'google-analytics-in-wp' ) . '</a>';
 			array_unshift( $links, $settings_link );
 			return $links;
 		}
@@ -372,7 +372,7 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 			if ( get_option( 'gacwp_got_updated' ) ) :
 				?>
 <div id="gacwp-notice" class="notice is-dismissible">
-	<p><?php echo sprintf( __('Google Analytics for WP has been updated to version %s.', 'google-analytics-connector-wp' ), GAINWP_CURRENT_VERSION).' '.sprintf( __('For details, check out %1$s.', 'google-analytics-connector-wp' ), sprintf(' <a href="https://intelligencewp.com/google-analytics-connector-wordpress/?utm_source=gacwp_notice&utm_medium=link&utm_content=release_notice&utm_campaign=gacwp">%s</a>', __('the plugin documentation', 'google-analytics-connector-wp') ) ); ?></p>
+	<p><?php echo sprintf( __('Google Analytics for WP has been updated to version %s.', 'google-analytics-in-wp' ), GAINWP_CURRENT_VERSION).' '.sprintf( __('For details, check out %1$s.', 'google-analytics-in-wp' ), sprintf(' <a href="https://intelligencewp.com/google-analytics-connector-wordpress/?utm_source=gacwp_notice&utm_medium=link&utm_content=release_notice&utm_campaign=gacwp">%s</a>', __('the plugin documentation', 'google-analytics-in-wp') ) ); ?></p>
 </div>
 
 			<?php

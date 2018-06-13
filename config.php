@@ -45,7 +45,7 @@ if ( ! class_exists( 'GAINWP_Config' ) ) {
 			if ( ! isset( $item['new_version'] ) || ! isset( $item['plugin'] ) || ! $this->options['automatic_updates_minorversion'] ) {
 				return $update;
 			}
-			if ( isset( $item['slug'] ) && 'google-analytics-connector-wp' == $item['slug'] ) {
+			if ( isset( $item['slug'] ) && 'google-analytics-in-wp' == $item['slug'] ) {
 				// Only when a minor update is available
 				if ( $this->get_major_version( GAINWP_CURRENT_VERSION ) == $this->get_major_version( $item['new_version'] ) ) {
 					return ( $this->get_major_version( GAINWP_CURRENT_VERSION ) == $this->get_major_version( $item['new_version'] ) );

@@ -178,11 +178,11 @@ if ( ! class_exists( 'GAINWP_Tools' ) ) {
 					$version = '';
 				} else {
 					/* translators: %s: version number */
-					$version = sprintf( __( 'This message was added in version %s.', 'google-analytics-connector-wp' ), $version );
+					$version = sprintf( __( 'This message was added in version %s.', 'google-analytics-in-wp' ), $version );
 				}
 
 				/* translators: Developer debugging message. 1: PHP function name, 2: Explanatory message, 3: Version information message */
-				trigger_error( sprintf( __( '%1$s was called <strong>incorrectly</strong>. %2$s %3$s', 'google-analytics-connector-wp' ), $function, $message, $version ) );
+				trigger_error( sprintf( __( '%1$s was called <strong>incorrectly</strong>. %2$s %3$s', 'google-analytics-in-wp' ), $function, $message, $version ) );
 			}
 		}
 
@@ -198,7 +198,7 @@ if ( ! class_exists( 'GAINWP_Tools' ) ) {
 				}
 				return $dom;
 			} else {
-				self::set_error( __( 'DOM is disabled or libxml PHP extension is missing. Contact your hosting provider. Automatic tracking of events for AMP pages is not possible.', 'google-analytics-connector-wp' ), 24 * 60 * 60 );
+				self::set_error( __( 'DOM is disabled or libxml PHP extension is missing. Contact your hosting provider. Automatic tracking of events for AMP pages is not possible.', 'google-analytics-in-wp' ), 24 * 60 * 60 );
 				return false;
 			}
 		}

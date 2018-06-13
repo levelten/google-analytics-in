@@ -28,7 +28,7 @@ if ( ! class_exists( 'GAINWP_Tracking' ) ) {
 		}
 
 		public function tracking_code() { // Removed since 5.0
-			GAINWP_Tools::doing_it_wrong( __METHOD__, __( "This method is deprecated, read the documentation!", 'google-analytics-connector-wp' ), '5.0' );
+			GAINWP_Tools::doing_it_wrong( __METHOD__, __( "This method is deprecated, read the documentation!", 'google-analytics-in-wp' ), '5.0' );
 		}
 
 		public static function gacwp_user_optout( $atts, $content = "" ) {
