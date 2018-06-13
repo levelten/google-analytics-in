@@ -1,0 +1,1 @@
+jQuery(function(){jQuery("#gacwp-widget *").tooltip({items:"[data-gacwp]",content:function(){return jQuery(this).attr("data-gacwp")}})});
