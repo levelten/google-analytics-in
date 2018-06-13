@@ -1,6 +1,6 @@
 === Google Analytics IN ===
 Contributors: tomdude,deconf
-Tags: analytics,google analytics,google analytics dashboard,google analytics plugin,google analytics widget,gtag
+Tags: analytics,google analytics,google analytics code,google analytics dashboard,google analytics plugin,google analytics tracking code,google analytics widget,gtag
 Requires at least: 3.5
 Tested up to: 4.9.6
 Stable tag: 5.4.0
@@ -13,7 +13,7 @@ Connects Google Analytics with your WordPress site.
 == Description ==
 Google Analytics IN easily integrates Google Analytics tracking and dashboard reporting in your website in just minutes.
 
-This plugin was created from the excellent Google Analytics Dashboard for WordPress (GADWP) plugin to maintain a robust, direct Google Analytics integration.
+It was created from the excellent Google Analytics Dashboard for WordPress (GADWP) plugin to maintain a robust, direct Google Analytics integration.
 
 In addition to a set of general Google Analytics stats, in-depth Page reports and in-depth Post reports allow further segmentation of your analytics data, providing performance details for each post or page from your website.
 
@@ -117,11 +117,11 @@ This plugin is fully compatible with multisite network installs, allowing three 
 
 == Why this Plugin ==
 
-The [IntelligenceWP](https://wordpress.org/plugins/intelligence) project leverages the GADWP plugin for core Google Analtyics integrations.
+The [IntelligenceWP](https://wordpress.org/plugins/intelligence) project leverages the GADWP plugin for core Google Analytics integrations.
 
-After the Google Analytics Dashboard for WordPress changed maintainers, users expressed concern over the new auth process and sharing Google API keys and analytics data.
+After the Google Analytics Dashboard for WordPress changed maintainers, users expressed concern over the new auth process proving 3rd party access to Google API keys and analytics data.
 
-The Google Analytics IN uses a direct auth process where API keys only reside in your WordPress site so data access is not shared with any 3rd parties.
+Google Analytics IN uses a direct auth process where API keys only reside in your WordPress site so data access is not shared with any 3rd parties.
 
 == Credits ==
 
@@ -129,7 +129,7 @@ This plugin was originally created by [Alin Marcu](https://deconf.com) as the Go
 
 == Installation ==
 
-1. Upload the full google-analytics-in-wp directory into your wp-content/plugins directory.
+1. Upload the full google-analytics-in directory into your wp-content/plugins directory.
 2. In WordPress select Plugins from your sidebar menu and activate the Google Analytics IN for WP plugin.
 3. Open the plugin configuration page, which is located under Google Analytics menu.
 4. Authorize the plugin to connect to Google Analytics using the Authorize Plugin button.
@@ -169,8 +169,9 @@ Google Analytics IN for WP it's released under the GPLv2, you can use it free of
 == Changelog ==
 
 = 5.4 =
-* Migrated auth process to prevent Google Analytics data being shared with 3rd parties
+* Enable direct Google API auth process to prevent access keys and Google Analytics data sharing with 3rd parties
 * Enabled Google Analytics tracking without requiring GAPI authentication
+* Consolidate settings
 
 = 5.3.2 =
 * Bug Fixes:	
