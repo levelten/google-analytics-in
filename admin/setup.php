@@ -372,7 +372,7 @@ if ( ! class_exists( 'GAINWP_Backend_Setup' ) ) {
 			if ( get_option( 'gacwp_got_updated' ) ) :
 				?>
 <div id="gacwp-notice" class="notice is-dismissible">
-	<p><?php echo sprintf( __('Google Analytics for WP has been updated to version %s.', 'google-analytics-in-wp' ), GAINWP_CURRENT_VERSION).' '.sprintf( __('For details, check out %1$s.', 'google-analytics-in-wp' ), sprintf(' <a href="https://intelligencewp.com/google-analytics-connector-wordpress/?utm_source=gacwp_notice&utm_medium=link&utm_content=release_notice&utm_campaign=gacwp">%s</a>', __('the plugin documentation', 'google-analytics-in-wp') ) ); ?></p>
+	<p><?php echo sprintf( __('Google Analytics for WP has been updated to version %s.', 'google-analytics-in-wp' ), GAINWP_CURRENT_VERSION).' '.sprintf( __('For details, check out %1$s.', 'google-analytics-in-wp' ), sprintf(' <a href="https://intelligencewp.com/google-analytics-in-wordpress/?utm_source=gacwp_notice&utm_medium=link&utm_content=release_notice&utm_campaign=gacwp">%s</a>', __('the plugin documentation', 'google-analytics-in-wp') ) ); ?></p>
 </div>
 
 			<?php

@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Google Analytics Connector WP
- * Plugin URI: https://intelligencewp.com/google-analytics-connector-wordpress
+ * Plugin URI: https://intelligencewp.com/google-analytics-in-wordpress
  * Description: Displays Google Analytics Reports and Real-Time Statistics in your dashboard. Automatically inserts the tracking code in every page of your website.
  * Author: LevelTen
  * Version: 5.4.0

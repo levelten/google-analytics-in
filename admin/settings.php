@@ -949,7 +949,7 @@ final class GAINWP_Settings {
 		}
 
 		$options = self::update_options( 'general' );
-		printf( '<div id="gapi-warning" class="updated"><p>%1$s <a href="https://intelligencewp.com/google-analytics-connector-wordpress/?utm_source=gacwp_config&utm_medium=link&utm_content=general_screen&utm_campaign=gacwp">%2$s</a></p></div>', __( 'Loading the required libraries. If this results in a blank screen or a fatal error, try this solution:', 'google-analytics-in-wp' ), __( 'Library conflicts between WordPress plugins', 'google-analytics-in-wp' ) );
+		printf( '<div id="gapi-warning" class="updated"><p>%1$s <a href="https://intelligencewp.com/google-analytics-in-wordpress/?utm_source=gacwp_config&utm_medium=link&utm_content=general_screen&utm_campaign=gacwp">%2$s</a></p></div>', __( 'Loading the required libraries. If this results in a blank screen or a fatal error, try this solution:', 'google-analytics-in-wp' ), __( 'Library conflicts between WordPress plugins', 'google-analytics-in-wp' ) );
 		if ( null === $gacwp->gapi_controller ) {
 			$gacwp->gapi_controller = new GAINWP_GAPI_Controller();
 		}
@@ -1197,7 +1197,7 @@ final class GAINWP_Settings {
                           <php if (0): // TODO: create doc ?>
                           <tr>
                             <td colspan="2" class="gacwp-settings-info">
-                              <?php printf(__('You need to create a %1$s and watch this %2$s before proceeding to authorization.', 'google-analytics-in-wp'), sprintf('<a href="%1$s" target="_blank">%2$s</a>', 'https://intelligencewp.com/creating-a-google-analytics-account/?utm_source=gacwp_config&utm_medium=link&utm_content=top_tutorial&utm_campaign=gacwp', __("free analytics account", 'google-analytics-in-wp')), sprintf('<a href="%1$s" target="_blank">%2$s</a>', 'https://intelligencewp.com/google-analytics-connector-wordpress/?utm_source=gacwp_config&utm_medium=link&utm_content=top_video&utm_campaign=gacwp', __("video tutorial", 'google-analytics-in-wp')));?>
+                              <?php printf(__('You need to create a %1$s and watch this %2$s before proceeding to authorization.', 'google-analytics-in-wp'), sprintf('<a href="%1$s" target="_blank">%2$s</a>', 'https://intelligencewp.com/creating-a-google-analytics-account/?utm_source=gacwp_config&utm_medium=link&utm_content=top_tutorial&utm_campaign=gacwp', __("free analytics account", 'google-analytics-in-wp')), sprintf('<a href="%1$s" target="_blank">%2$s</a>', 'https://intelligencewp.com/google-analytics-in-wordpress/?utm_source=gacwp_config&utm_medium=link&utm_content=top_video&utm_campaign=gacwp', __("video tutorial", 'google-analytics-in-wp')));?>
                             </td>
                           </tr>
                           <php endif; ?>
@@ -1330,7 +1330,7 @@ final class GAINWP_Settings {
 		/*
 		 * Include GAPI
 		 */
-		echo '<div id="gapi-warning" class="updated"><p>' . __( 'Loading the required libraries. If this results in a blank screen or a fatal error, try this solution:', 'google-analytics-in-wp' ) . ' <a href="https://intelligencewp.com/google-analytics-connector-wordpress/?utm_source=gacwp_config&utm_medium=link&utm_content=general_screen&utm_campaign=gacwp">Library conflicts between WordPress plugins</a></p></div>';
+		echo '<div id="gapi-warning" class="updated"><p>' . __( 'Loading the required libraries. If this results in a blank screen or a fatal error, try this solution:', 'google-analytics-in-wp' ) . ' <a href="https://intelligencewp.com/google-analytics-in-wordpress/?utm_source=gacwp_config&utm_medium=link&utm_content=general_screen&utm_campaign=gacwp">Library conflicts between WordPress plugins</a></p></div>';
 
 		if ( null === $gacwp->gapi_controller ) {
 			$gacwp->gapi_controller = new GAINWP_GAPI_Controller();
@@ -1505,7 +1505,7 @@ final class GAINWP_Settings {
               <?php if (0) : // TODO: create doc ?>
               <tr>
 							  <td colspan="2" class="gacwp-settings-info">
-								  <?php printf(__('You need to create a %1$s and watch this %2$s before proceeding to authorization.', 'google-analytics-in-wp'), sprintf('<a href="%1$s" target="_blank">%2$s</a>', 'https://intelligencewp.com/creating-a-google-analytics-account/?utm_source=gacwp_config&utm_medium=link&utm_content=top_tutorial&utm_campaign=gacwp', __("free analytics account", 'google-analytics-in-wp')), sprintf('<a href="%1$s" target="_blank">%2$s</a>', 'https://intelligencewp.com/google-analytics-connector-wordpress/?utm_source=gacwp_config&utm_medium=link&utm_content=top_video&utm_campaign=gacwp', __("video tutorial", 'google-analytics-in-wp')));?>
+								  <?php printf(__('You need to create a %1$s and watch this %2$s before proceeding to authorization.', 'google-analytics-in-wp'), sprintf('<a href="%1$s" target="_blank">%2$s</a>', 'https://intelligencewp.com/creating-a-google-analytics-account/?utm_source=gacwp_config&utm_medium=link&utm_content=top_tutorial&utm_campaign=gacwp', __("free analytics account", 'google-analytics-in-wp')), sprintf('<a href="%1$s" target="_blank">%2$s</a>', 'https://intelligencewp.com/google-analytics-in-wordpress/?utm_source=gacwp_config&utm_medium=link&utm_content=top_video&utm_campaign=gacwp', __("video tutorial", 'google-analytics-in-wp')));?>
 								</td>
 							</tr>
 							<?php endif; ?>
@@ -1900,7 +1900,7 @@ final class GAINWP_Settings {
             <span><?php _e("Setup Tutorial & Demo",'google-analytics-in-wp') ?></span>
           </h3>
           <div class="inside">
-            <a href="https://intelligencewp.com/google-analytics-connector-wordpress/?utm_source=gacwp_config&utm_medium=link&utm_content=video&utm_campaign=gacwp" target="_blank"><img src="<?php echo plugins_url( 'images/google-analytics-connector.png' , __FILE__ );?>" width="100%" alt="" /></a>
+            <a href="https://intelligencewp.com/google-analytics-in-wordpress/?utm_source=gacwp_config&utm_medium=link&utm_content=video&utm_campaign=gacwp" target="_blank"><img src="<?php echo plugins_url( 'images/google-analytics-connector.png' , __FILE__ );?>" width="100%" alt="" /></a>
           </div>
         </div>
         <div class="postbox">

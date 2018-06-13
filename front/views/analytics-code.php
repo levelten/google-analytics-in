@@ -7,7 +7,7 @@
 ?>
 
 <?php if ( 0 == $data['ga_with_gtag'] ):?>
-<!-- BEGIN GAINWP v<?php echo GAINWP_CURRENT_VERSION; ?> Universal Analytics - https://intelligencewp.com/google-analytics-connector-wordpress/ -->
+<!-- BEGIN GAINWP v<?php echo GAINWP_CURRENT_VERSION; ?> Universal Analytics - https://intelligencewp.com/google-analytics-in-wordpress/ -->
 <script>
 (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -17,7 +17,7 @@
 </script>
 <!-- END GAINWP Universal Analytics -->
 <?php else:?>
-<!-- BEGIN GAINWP v<?php echo GAINWP_CURRENT_VERSION; ?> Global Site Tag - https://intelligencewp.com/google-analytics-connector-wordpress/ -->
+<!-- BEGIN GAINWP v<?php echo GAINWP_CURRENT_VERSION; ?> Global Site Tag - https://intelligencewp.com/google-analytics-in-wordpress/ -->
 <script async src="<?php echo $data['tracking_script_path']?>?id=<?php echo $data['uaid']?>"></script>
 <script>
   window.dataLayer = window.dataLayer || [];

@@ -152,7 +152,7 @@ You can submit pull requests, feature requests and bug reports on [our GitHub re
 
 = Documentation, Tutorials and FAQ =
 
-For documentation, tutorials, FAQ and videos check out: [Google Analytics Connector for WP documentation](https://intelligencewp.com/google-analytics-connector-wordpress/).
+For documentation, tutorials, FAQ and videos check out: [Google Analytics Connector for WP documentation](https://intelligencewp.com/google-analytics-in-wordpress/).
 
 == Screenshots ==
 
