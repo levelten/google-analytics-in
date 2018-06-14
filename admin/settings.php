@@ -1077,13 +1077,13 @@ final class GAINWP_Settings {
 		}
 
     if (!empty( $_POST['Submit'] ) && isset( $_POST['setup_mode'] ) ) {
-      if ($_POST['setup_mode'] == 'gapi') {
+      if ($_POST['setup_mode'] == '') {
         if ($options['tracking_type'] == 'disabled') {
           $gainwp->config->options['tracking_type'] = 'universal';
           self::update_options( 'tracking' );
         }
       }
-      elseif ($_POST['setup_mode'] == 'gapi') {
+      elseif ($_POST['setup_mode'] == 'reporting_only') {
         if ($options['tracking_type'] != 'disabled') {
           $gainwp->config->options['tracking_type'] = 'disabled';
           self::update_options( 'tracking' );
@@ -1093,7 +1093,7 @@ final class GAINWP_Settings {
 		if ( !isset($_POST['setup_mode']) ) {
       $_POST['setup_mode'] = '';
       if ($options['token'] || isset($_POST['Reset'])) {
-        $_POST['setup_mode'] = ($options['tracking_type'] == 'disabled') ? 'gapi-' : 'gapi';
+        $_POST['setup_mode'] = ($options['tracking_type'] == 'disabled') ? 'reporting_only' : '';
       }
       if (isset($_GET['setup_mode'])) {
         $_POST['setup_mode'] = $_GET['setup_mode'];
@@ -1138,13 +1138,14 @@ final class GAINWP_Settings {
                           </td>
                           <td>
                             <select id="setup_mode" name="setup_mode" onchange="this.form.submit()"<?php if ($options['token']) { echo ' xdisabled="disabled"'; } ?>>
-                              <option value="" <?php selected( $_POST['setup_mode'], '' ); ?><?php if ($options['token']) { echo ' disabled="disabled"'; } ?>><?php _e("Tracking only", 'google-analytics-in-wp');?></option>
-                              <option value="gapi" <?php selected( $_POST['setup_mode'], 'gapi' ); ?>><?php _e("Tracking & Reporting API", 'google-analytics-in-wp');?></option>
-                              <option value="gapi-" <?php selected( $_POST['setup_mode'], 'gapi-' ); ?>><?php _e("Reporting API only", 'google-analytics-in-wp');?></option>
+                              <option value="" <?php selected( $_POST['setup_mode'], '' ); ?>><?php _e("Tracking & Reporting", 'google-analytics-in-wp');?></option>
+                              <option value="reporting_only" <?php selected( $_POST['setup_mode'], 'reporting_only' ); ?>><?php _e("Reporting only", 'google-analytics-in-wp');?></option>
+                              <option value="tracking_only" <?php selected( $_POST['setup_mode'], 'tracking_only' ); ?><?php if ($options['token']) { echo ' disabled="disabled"'; } ?>><?php _e("Tracking only", 'google-analytics-in-wp');?></option>
+
                             </select>
                           </td>
                         </tr>
-                        <?php if ($_POST['setup_mode'] == '') : ?>
+                        <?php if ($_POST['setup_mode'] == 'tracking_only') : ?>
                           <tr>
                             <td class="gainwp-settings-title">
                               <label for="tracking_id"><?php _e("Tracking ID:", 'google-analytics-in-wp' ); ?>
@@ -1260,7 +1261,7 @@ final class GAINWP_Settings {
                             </tr>
                           <?php endif; // END $options['token'] ?>
                         <?php endif; // END if $_POST['setup_mode] == '' ?>
-                        <?php if ($options['token'] || ($_POST['setup_mode'] == '' && $options['tracking_id'])) : ?>
+                        <?php if ($options['token'] || ($_POST['setup_mode'] == 'tracking_only' && $options['tracking_id'])) : ?>
                           <tr>
                             <td colspan="2"><?php echo "<h2>" . __( "Theme", 'google-analytics-in-wp' ) . "</h2>"; ?></td>
                           </tr>
@@ -1300,7 +1301,7 @@ final class GAINWP_Settings {
                             </tr>
                           <?php endif; // END if is_multisite ?>
                         <?php endif; // END if ($options['token'] || $options['tracking_id]) ?>
-                        <?php if ($options['token'] || ( '' == $_POST['setup_mode'])) : ?>
+                        <?php if ($options['token'] || ( 'tracking_only' == $_POST['setup_mode'])) : ?>
                           <tr>
                             <td colspan="2" class="submit">
                               <input type="submit" name="Submit" class="button button-primary" value="<?php _e('Save Changes', 'google-analytics-in-wp' ) ?>" />

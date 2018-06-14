@@ -1,4 +1,4 @@
-=== Google Analytics IN ===
+=== GAIN Google Analytics Integration for WordPress ===
 Contributors: tomdude,deconf
 Tags: analytics,google analytics,google analytics code,google analytics dashboard,google analytics plugin,google analytics tracking code,google analytics widget,gtag
 Requires at least: 3.5
@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Connects Google Analytics with your WordPress site.
 
 == Description ==
-Google Analytics IN easily integrates Google Analytics tracking and dashboard reporting in your website in just minutes.
+The GAIN Google Analytics Integration for WordPress plugin easily integrates Google Analytics tracking and dashboard reporting into your website in just minutes.
 
 It was created from the excellent Google Analytics Dashboard for WordPress (GADWP) plugin to maintain a robust, direct Google Analytics integration.
 
@@ -59,7 +59,7 @@ User privacy oriented features:
 - option to follow Do Not Track (DNT) sent by browsers
 - support for user tracking opt-out
 
-Google Analytics IN for WP enables you to easily track events like:
+Google Analytics IN WP enables you to easily track events like:
  
 - Downloads
 - Emails 
@@ -129,8 +129,8 @@ This plugin was originally created by [Alin Marcu](https://deconf.com) as the Go
 
 == Installation ==
 
-1. Upload the full google-analytics-in directory into your wp-content/plugins directory.
-2. In WordPress select Plugins from your sidebar menu and activate the Google Analytics IN for WP plugin.
+1. Upload the full ga-in directory into your wp-content/plugins directory.
+2. In WordPress select Plugins from your sidebar menu and activate the GAINWP - Google Analytics Integration for WordPress plugin.
 3. Open the plugin configuration page, which is located under Google Analytics menu.
 4. Authorize the plugin to connect to Google Analytics using the Authorize Plugin button.
 5. Go back to the plugin configuration page, which is located under Google Analytics menu to update/set your settings.
@@ -158,7 +158,7 @@ For documentation, tutorials, FAQ and videos check out: [Google Analytics IN for
 
 == Localization ==
 
-You can translate Google Analytics IN for WP on [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/google-analytics-in).
+You can translate Google Analytics IN for WP on [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/ga-in).
 
 == License ==
 
