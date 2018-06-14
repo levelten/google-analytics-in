@@ -1,4 +1,4 @@
-=== GAIN Google Analytics Integration for WordPress ===
+=== GAinWP Google Analytics Integration for WordPress ===
 Contributors: tomdude,deconf
 Tags: analytics,google analytics,google analytics code,google analytics dashboard,google analytics plugin,google analytics tracking code,google analytics widget,gtag
 Requires at least: 3.5
@@ -11,7 +11,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Connects Google Analytics with your WordPress site.
 
 == Description ==
-The GAIN Google Analytics Integration for WordPress plugin easily integrates Google Analytics tracking and dashboard reporting into your website in just minutes.
+The GAinWP Google Analytics Integration for WordPress plugin easily integrates Google Analytics tracking and dashboard reporting into your website in just minutes.
 
 It was created from the excellent Google Analytics Dashboard for WordPress (GADWP) plugin to maintain a robust, direct Google Analytics integration.
 
@@ -59,7 +59,7 @@ User privacy oriented features:
 - option to follow Do Not Track (DNT) sent by browsers
 - support for user tracking opt-out
 
-Google Analytics IN WP enables you to easily track events like:
+GAinWP enables you to easily track events like:
  
 - Downloads
 - Emails 
@@ -70,7 +70,7 @@ Google Analytics IN WP enables you to easily track events like:
 - Page Scrolling Depth
 - Custom event categories, actions and labels using annotated HTML elements
 
-With Google Analytics IN for WP you can use custom dimensions to track:
+With GAinWP you can use custom dimensions to track:
 
 - Authors
 - Publication year
@@ -104,7 +104,7 @@ As an alternative to Google Analytics tracking code, you can use Google Tag Mana
 - Hashmarks, outbound links, telephones and e-mails tracking
 - Custom event categories, actions and labels using annotated HTML elements
 
-= Google Analytics IN for WP on Multisite =
+= GAinWP on Multisite =
 
 This plugin is fully compatible with multisite network installs, allowing three setup modes:
 
@@ -121,7 +121,7 @@ The [IntelligenceWP](https://wordpress.org/plugins/intelligence) project leverag
 
 After the Google Analytics Dashboard for WordPress changed maintainers, users expressed concern over the new auth process proving 3rd party access to Google API keys and analytics data.
 
-Google Analytics IN uses a direct auth process where API keys only reside in your WordPress site so data access is not shared with any 3rd parties.
+GAinWP uses a direct auth process where API keys only reside in your WordPress site so data access is not shared with any 3rd parties.
 
 == Credits ==
 
@@ -144,7 +144,7 @@ No, once the plugin is authorized and a default domain is selected the Google An
 
 = Some settings are missing in the video tutorial =
 
-We are constantly improving Google Analytics IN for WP, sometimes the video tutorial may be a little outdated.
+We are constantly improving GAinWP, sometimes the video tutorial may be a little outdated.
 
 = How can I suggest a new feature, contribute or report a bug? =
 

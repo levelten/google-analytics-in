@@ -1,12 +1,12 @@
 <?php
 /**
- * Plugin Name: GAIN Google Analytics Integration for WordPress
+ * Plugin Name: GAinWP Google Analytics Integration for WordPress
  * Plugin URI: https://intelligencewp.com/google-analytics-in-wordpress
  * Description: Automatically adds Google Analytics tracking to your site and displays Google Analytics reports and real-time statistics in your dashboard.
  * Author: IntelligenceWP
  * Version: 5.4.0
  * Author URI: https://intelligencewp.com
- * Text Domain: google-analytics-in-wp
+ * Text Domain: ga-in
  * Domain Path: /languages
  *
  * This plugin was originally created as the Google Analytics Dashboard for WordPress (GADWP) by Alin Marcu (https://deconf.com).
@@ -59,7 +59,7 @@ if ( ! class_exists( 'GAINWP_Manager' ) ) {
 		 */
 		private function __construct() {
 			if ( null !== self::$instance ) {
-				_doing_it_wrong( __FUNCTION__, __( "This is not allowed, read the documentation!", 'google-analytics-in-wp' ), '4.6' );
+				_doing_it_wrong( __FUNCTION__, __( "This is not allowed, read the documentation!", 'ga-in' ), '4.6' );
 			}
 		}
 
@@ -67,14 +67,14 @@ if ( ! class_exists( 'GAINWP_Manager' ) ) {
 		 * Clone warning
 		 */
 		private function __clone() {
-			_doing_it_wrong( __FUNCTION__, __( "This is not allowed, read the documentation!", 'google-analytics-in-wp' ), '4.6' );
+			_doing_it_wrong( __FUNCTION__, __( "This is not allowed, read the documentation!", 'ga-in' ), '4.6' );
 		}
 
 		/**
 		 * Wakeup warning
 		 */
 		private function __wakeup() {
-			_doing_it_wrong( __FUNCTION__, __( "This is not allowed, read the documentation!", 'google-analytics-in-wp' ), '4.6' );
+			_doing_it_wrong( __FUNCTION__, __( "This is not allowed, read the documentation!", 'ga-in' ), '4.6' );
 		}
 
 		/**
@@ -165,7 +165,7 @@ if ( ! class_exists( 'GAINWP_Manager' ) ) {
 		 * Load i18n
 		 */
 		public function load_i18n() {
-			load_plugin_textdomain( 'google-analytics-in-wp', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+			load_plugin_textdomain( 'ga-in', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 		}
 
 		/**

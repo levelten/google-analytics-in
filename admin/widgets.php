@@ -23,14 +23,14 @@ if ( ! class_exists( 'GAINWP_Backend_Widgets' ) ) {
 		}
 
 		public function add_widget() {
-			wp_add_dashboard_widget( 'gainwp-widget', __( "Google Analytics", 'google-analytics-in-wp' ), array( $this, 'dashboard_widget' ), $control_callback = null );
+			wp_add_dashboard_widget( 'gainwp-widget', __( "Google Analytics", 'ga-in' ), array( $this, 'dashboard_widget' ), $control_callback = null );
 		}
 
 		public function dashboard_widget() {
 			$projectId = 0;
 			
 			if ( empty( $this->gainwp->config->options['token'] ) ) {
-				echo '<p>' . __( "This plugin needs an authorization:", 'google-analytics-in-wp' ) . '</p><form action="' . menu_page_url( 'gainwp_settings', false ) . '" method="POST">' . get_submit_button( __( "Authorize Plugin", 'google-analytics-in-wp' ), 'secondary' ) . '</form>';
+				echo '<p>' . __( "This plugin needs an authorization:", 'ga-in' ) . '</p><form action="' . menu_page_url( 'gainwp_settings', false ) . '" method="POST">' . get_submit_button( __( "Authorize Plugin", 'ga-in' ), 'secondary' ) . '</form>';
 				return;
 			}
 			
@@ -38,22 +38,22 @@ if ( ! class_exists( 'GAINWP_Backend_Widgets' ) ) {
 				if ( $this->gainwp->config->options['tableid_jail'] ) {
 					$projectId = $this->gainwp->config->options['tableid_jail'];
 				} else {
-					echo '<p>' . __( "An admin should asign a default Google Analytics Profile.", 'google-analytics-in-wp' ) . '</p><form action="' . menu_page_url( 'gainwp_settings', false ) . '" method="POST">' . get_submit_button( __( "Select Domain", 'google-analytics-in-wp' ), 'secondary' ) . '</form>';
+					echo '<p>' . __( "An admin should asign a default Google Analytics Profile.", 'ga-in' ) . '</p><form action="' . menu_page_url( 'gainwp_settings', false ) . '" method="POST">' . get_submit_button( __( "Select Domain", 'ga-in' ), 'secondary' ) . '</form>';
 					return;
 				}
 			} else {
 				if ( $this->gainwp->config->options['tableid_jail'] ) {
 					$projectId = $this->gainwp->config->options['tableid_jail'];
 				} else {
-					echo '<p>' . __( "An admin should asign a default Google Analytics Profile.", 'google-analytics-in-wp' ) . '</p><form action="' . menu_page_url( 'gainwp_settings', false ) . '" method="POST">' . get_submit_button( __( "Select Domain", 'google-analytics-in-wp' ), 'secondary' ) . '</form>';
+					echo '<p>' . __( "An admin should asign a default Google Analytics Profile.", 'ga-in' ) . '</p><form action="' . menu_page_url( 'gainwp_settings', false ) . '" method="POST">' . get_submit_button( __( "Select Domain", 'ga-in' ), 'secondary' ) . '</form>';
 					return;
 				}
 			}
 			
 			if ( ! ( $projectId ) ) {
-				echo '<p>' . __( "Something went wrong while retrieving property data. You need to create and properly configure a Google Analytics account:", 'google-analytics-in-wp' ) . '</p>';
+				echo '<p>' . __( "Something went wrong while retrieving property data. You need to create and properly configure a Google Analytics account:", 'ga-in' ) . '</p>';
 
-				//echo '<p>' . __( "Something went wrong while retrieving property data. You need to create and properly configure a Google Analytics account:", 'google-analytics-in-wp' ) . '</p> <form action="https://intelligencewp.com/how-to-set-up-google-analytics-on-your-website/" method="POST">' . get_submit_button( __( "Find out more!", 'google-analytics-in-wp' ), 'secondary' ) . '</form>';
+				//echo '<p>' . __( "Something went wrong while retrieving property data. You need to create and properly configure a Google Analytics account:", 'ga-in' ) . '</p> <form action="https://intelligencewp.com/how-to-set-up-google-analytics-on-your-website/" method="POST">' . get_submit_button( __( "Find out more!", 'ga-in' ), 'secondary' ) . '</form>';
 				return;
 			}
 			

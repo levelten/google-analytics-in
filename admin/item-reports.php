@@ -48,7 +48,7 @@ if ( ! class_exists( 'GAINWP_Backend_Item_Reports' ) ) {
 		}
 
 		public function add_columns( $columns ) {
-			return array_merge( $columns, array( 'gainwp_stats' => __( 'Analytics', 'google-analytics-in-wp' ) ) );
+			return array_merge( $columns, array( 'gainwp_stats' => __( 'Analytics', 'ga-in' ) ) );
 		}
 	}
 }

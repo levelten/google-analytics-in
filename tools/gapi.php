@@ -403,33 +403,33 @@ if ( ! class_exists( 'GAINWP_GAPI_Controller' ) ) {
 		private function get_areachart_data( $projectId, $from, $to, $query, $filter = '' ) {
 			switch ( $query ) {
 				case 'users' :
-					$title = __( "Users", 'google-analytics-in-wp' );
+					$title = __( "Users", 'ga-in' );
 					break;
 				case 'pageviews' :
-					$title = __( "Page Views", 'google-analytics-in-wp' );
+					$title = __( "Page Views", 'ga-in' );
 					break;
 				case 'visitBounceRate' :
-					$title = __( "Bounce Rate", 'google-analytics-in-wp' );
+					$title = __( "Bounce Rate", 'ga-in' );
 					break;
 				case 'organicSearches' :
-					$title = __( "Organic Searches", 'google-analytics-in-wp' );
+					$title = __( "Organic Searches", 'ga-in' );
 					break;
 				case 'uniquePageviews' :
-					$title = __( "Unique Page Views", 'google-analytics-in-wp' );
+					$title = __( "Unique Page Views", 'ga-in' );
 					break;
 				default :
-					$title = __( "Sessions", 'google-analytics-in-wp' );
+					$title = __( "Sessions", 'ga-in' );
 			}
 			$metrics = 'ga:' . $query;
 			if ( 'today' == $from || 'yesterday' == $from ) {
 				$dimensions = 'ga:hour';
-				$dayorhour = __( "Hour", 'google-analytics-in-wp' );
+				$dayorhour = __( "Hour", 'ga-in' );
 			} else if ( '365daysAgo' == $from || '1095daysAgo' == $from ) {
 				$dimensions = 'ga:yearMonth, ga:month';
-				$dayorhour = __( "Date", 'google-analytics-in-wp' );
+				$dayorhour = __( "Date", 'ga-in' );
 			} else {
 				$dimensions = 'ga:date,ga:dayOfWeekName';
-				$dayorhour = __( "Date", 'google-analytics-in-wp' );
+				$dayorhour = __( "Date", 'ga-in' );
 			}
 			$options = array( 'dimensions' => $dimensions, 'quotaUser' => $this->managequota . 'p' . $projectId );
 			if ( $filter ) {
@@ -456,7 +456,7 @@ if ( ! class_exists( 'GAINWP_GAPI_Controller' ) ) {
 					 * Example: 'F, Y' will become 'November, 2015'
 					 * For details see: http://php.net/manual/en/function.date.php#refsect1-function.date-parameters
 					 */
-					$gainwp_data[] = array( date_i18n( __( 'F, Y', 'google-analytics-in-wp' ), strtotime( $row[0] . '01' ) ), round( $row[2], 2 ) );
+					$gainwp_data[] = array( date_i18n( __( 'F, Y', 'ga-in' ), strtotime( $row[0] . '01' ) ), round( $row[2], 2 ) );
 				}
 			} else {
 				foreach ( $data->getRows() as $row ) {
@@ -465,7 +465,7 @@ if ( ! class_exists( 'GAINWP_GAPI_Controller' ) ) {
 					 * Example: 'l, F j, Y' will become 'Thusday, November 17, 2015'
 					 * For details see: http://php.net/manual/en/function.date.php#refsect1-function.date-parameters
 					 */
-					$gainwp_data[] = array( date_i18n( __( 'l, F j, Y', 'google-analytics-in-wp' ), strtotime( $row[0] ) ), round( $row[2], 2 ) );
+					$gainwp_data[] = array( date_i18n( __( 'l, F j, Y', 'ga-in' ), strtotime( $row[0] ) ), round( $row[2], 2 ) );
 				}
 			}
 
@@ -546,7 +546,7 @@ if ( ! class_exists( 'GAINWP_GAPI_Controller' ) ) {
 			if ( is_numeric( $data ) ) {
 				return $data;
 			}
-			$gainwp_data = array( array( __( "Pages", 'google-analytics-in-wp' ), __( ucfirst( $metric ), 'google-analytics-in-wp' ) ) );
+			$gainwp_data = array( array( __( "Pages", 'ga-in' ), __( ucfirst( $metric ), 'ga-in' ) ) );
 			foreach ( $data->getRows() as $row ) {
 				$gainwp_data[] = array( esc_html( $row[0] ), (int) $row[1] );
 			}
@@ -574,11 +574,11 @@ if ( ! class_exists( 'GAINWP_GAPI_Controller' ) ) {
 			if ( is_numeric( $data ) ) {
 				return $data;
 			}
-			$gainwp_data = array( array( __( "404 Errors", 'google-analytics-in-wp' ), __( ucfirst( $metric ), 'google-analytics-in-wp' ) ) );
+			$gainwp_data = array( array( __( "404 Errors", 'ga-in' ), __( ucfirst( $metric ), 'ga-in' ) ) );
 			foreach ( $data->getRows() as $row ) {
 				$path = esc_html( $row[0] );
 				$source = esc_html( $row[1] );
-				$gainwp_data[] = array( "<strong>" . __( "URI:", 'google-analytics-in-wp' ) . "</strong> " . $path . "<br><strong>" . __( "Source:", 'google-analytics-in-wp' ) . "</strong> " . $source, (int) $row[2] );
+				$gainwp_data[] = array( "<strong>" . __( "URI:", 'ga-in' ) . "</strong> " . $path . "<br><strong>" . __( "Source:", 'ga-in' ) . "</strong> " . $source, (int) $row[2] );
 			}
 			return $gainwp_data;
 		}
@@ -610,7 +610,7 @@ if ( ! class_exists( 'GAINWP_GAPI_Controller' ) ) {
 			if ( is_numeric( $data ) ) {
 				return $data;
 			}
-			$gainwp_data = array( array( __( "Referrers", 'google-analytics-in-wp' ), __( ucfirst( $metric ), 'google-analytics-in-wp' ) ) );
+			$gainwp_data = array( array( __( "Referrers", 'ga-in' ), __( ucfirst( $metric ), 'ga-in' ) ) );
 			foreach ( $data->getRows() as $row ) {
 				$gainwp_data[] = array( esc_html( $row[0] ), (int) $row[1] );
 			}
@@ -645,7 +645,7 @@ if ( ! class_exists( 'GAINWP_GAPI_Controller' ) ) {
 				return $data;
 			}
 
-			$gainwp_data = array( array( __( "Searches", 'google-analytics-in-wp' ), __( ucfirst( $metric ), 'google-analytics-in-wp' ) ) );
+			$gainwp_data = array( array( __( "Searches", 'ga-in' ), __( ucfirst( $metric ), 'ga-in' ) ) );
 			foreach ( $data->getRows() as $row ) {
 				$gainwp_data[] = array( esc_html( $row[0] ), (int) $row[1] );
 			}
@@ -668,7 +668,7 @@ if ( ! class_exists( 'GAINWP_GAPI_Controller' ) ) {
 		private function get_locations( $projectId, $from, $to, $filter = '', $metric ) {
 			$metrics = 'ga:' . $metric;
 			$options = "";
-			$title = __( "Countries", 'google-analytics-in-wp' );
+			$title = __( "Countries", 'ga-in' );
 			$serial = 'qr7_' . $this->get_serial( $projectId . $from . $filter . $metric );
 			$dimensions = 'ga:country';
 			$local_filter = '';
@@ -678,7 +678,7 @@ if ( ! class_exists( 'GAINWP_GAPI_Controller' ) ) {
 				$country_codes = GAINWP_Tools::get_countrycodes();
 				if ( isset( $country_codes[$this->gainwp->config->options['ga_target_geomap']] ) ) {
 					$local_filter = 'ga:country==' . ( $country_codes[$this->gainwp->config->options['ga_target_geomap']] );
-					$title = __( "Cities from", 'google-analytics-in-wp' ) . ' ' . __( $country_codes[$this->gainwp->config->options['ga_target_geomap']] );
+					$title = __( "Cities from", 'ga-in' ) . ' ' . __( $country_codes[$this->gainwp->config->options['ga_target_geomap']] );
 					$serial = 'qr7_' . $this->get_serial( $projectId . $from . $this->gainwp->config->options['ga_target_geomap'] . $filter . $metric );
 				}
 			}
@@ -698,7 +698,7 @@ if ( ! class_exists( 'GAINWP_GAPI_Controller' ) ) {
 				return $data;
 			}
 
-			$gainwp_data = array( array( $title, __( ucfirst( $metric ), 'google-analytics-in-wp' ) ) );
+			$gainwp_data = array( array( $title, __( ucfirst( $metric ), 'ga-in' ) ) );
 			foreach ( $data->getRows() as $row ) {
 				if ( isset( $row[2] ) ) {
 					$gainwp_data[] = array( esc_html( $row[0] ) . ', ' . esc_html( $row[1] ), (int) $row[2] );
@@ -740,7 +740,7 @@ if ( ! class_exists( 'GAINWP_GAPI_Controller' ) ) {
 				// unable to render as an Org Chart, returns a numeric value to be handled by reportsx.js
 				return - 21;
 			}
-			$block = ( 'channelGrouping' == $query ) ? __( "Channels", 'google-analytics-in-wp' ) : __( "Devices", 'google-analytics-in-wp' );
+			$block = ( 'channelGrouping' == $query ) ? __( "Channels", 'ga-in' ) : __( "Devices", 'ga-in' );
 			$gainwp_data = array( array( '<div style="color:black; font-size:1.1em">' . $block . '</div><div style="color:darkblue; font-size:1.2em">' . (int) $data['totalsForAllResults'][$metrics] . '</div>', "" ) );
 			foreach ( $data->getRows() as $row ) {
 				$shrink = explode( " ", $row[0] );
@@ -788,7 +788,7 @@ if ( ! class_exists( 'GAINWP_GAPI_Controller' ) ) {
 			if ( is_numeric( $data ) ) {
 				return $data;
 			}
-			$gainwp_data = array( array( __( "Type", 'google-analytics-in-wp' ), __( ucfirst( $metric ), 'google-analytics-in-wp' ) ) );
+			$gainwp_data = array( array( __( "Type", 'ga-in' ), __( ucfirst( $metric ), 'ga-in' ) ) );
 			$i = 0;
 			$included = 0;
 			foreach ( $data->getRows() as $row ) {
@@ -803,7 +803,7 @@ if ( ! class_exists( 'GAINWP_GAPI_Controller' ) ) {
 			$totals = $data->getTotalsForAllResults();
 			$others = $totals[$metrics] - $included;
 			if ( $others > 0 ) {
-				$gainwp_data[] = array( __( 'Other', 'google-analytics-in-wp' ), $others );
+				$gainwp_data[] = array( __( 'Other', 'ga-in' ), $others );
 			}
 
 			return $gainwp_data;
@@ -831,7 +831,7 @@ if ( ! class_exists( 'GAINWP_GAPI_Controller' ) ) {
 			if ( is_numeric( $data ) ) {
 				return $data;
 			}
-			$gainwp_data = array( array( __( "Date", 'google-analytics-in-wp' ), __( "Sessions", 'google-analytics-in-wp' ) ) );
+			$gainwp_data = array( array( __( "Date", 'ga-in' ), __( "Sessions", 'ga-in' ) ) );
 			if ( $anonim ) {
 				$max_array = array();
 				foreach ( $data->getRows() as $item ) {
@@ -840,7 +840,7 @@ if ( ! class_exists( 'GAINWP_GAPI_Controller' ) ) {
 				$max = max( $max_array ) ? max( $max_array ) : 1;
 			}
 			foreach ( $data->getRows() as $row ) {
-				$gainwp_data[] = array( date_i18n( __( 'l, F j, Y', 'google-analytics-in-wp' ), strtotime( $row[0] ) ), ( $anonim ? round( $row[2] * 100 / $max, 2 ) : (int) $row[2] ) );
+				$gainwp_data[] = array( date_i18n( __( 'l, F j, Y', 'ga-in' ), strtotime( $row[0] ) ), ( $anonim ? round( $row[2] * 100 / $max, 2 ) : (int) $row[2] ) );
 			}
 			$totals = $data->getTotalsForAllResults();
 			return array( $gainwp_data, $anonim ? 0 : number_format_i18n( $totals['ga:sessions'] ) );
